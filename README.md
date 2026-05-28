@@ -30,3 +30,6 @@ The program will show:
 - First 3 rows
 - Average score
 - CS department students
+## Note
+
+This project is used to practice Linux, Python, pandas, and Git.
