@@ -33,3 +33,6 @@ The program will show:
 ## Note
 
 This project is used to practice Linux, Python, pandas, and Git.
+## GitHub Update Practice
+
+This line was added from WSL Ubuntu to practice git add, commit, and push.
