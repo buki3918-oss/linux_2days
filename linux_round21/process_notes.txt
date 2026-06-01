@@ -1,0 +1,43 @@
+Linux Round 21: Process and Background Jobs
+
+Commands practiced:
+
+1. sleep 10
+   Run a process in the foreground for 10 seconds.
+
+2. sleep 100
+   Run a long foreground process.
+
+3. Ctrl + C
+   Stop and terminate the foreground process.
+
+4. sleep 100 &
+   Run sleep 100 in the background.
+
+5. jobs
+   Show current shell jobs.
+
+6. ps
+   Show processes related to the current shell.
+
+7. ps aux | grep sleep
+   Search for sleep processes.
+
+8. kill PID
+   Terminate a process by PID.
+
+9. Ctrl + Z
+   Pause the current foreground process.
+
+10. fg
+   Bring a stopped or background job back to the foreground.
+
+Important concepts:
+
+- Process means a running program.
+- PID means Process ID.
+- Foreground process blocks the terminal.
+- Background process allows the terminal to keep accepting commands.
+- Ctrl + C terminates a foreground process.
+- Ctrl + Z pauses a foreground process.
+- kill PID terminates a selected process.
