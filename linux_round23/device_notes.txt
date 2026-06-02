@@ -1,0 +1,34 @@
+Linux Round 23: /dev, dmesg, and System Device Information
+
+Commands practiced:
+
+1. ls /dev | head
+   Show the first few device entries under /dev.
+
+2. ls -l /dev/null
+   Check the null device.
+
+3. ls -l /dev/zero
+   Check the zero device.
+
+4. ls -l /dev/random
+   Check the random device.
+
+5. echo "hello" > /dev/null
+   Send output to /dev/null. The output disappears.
+
+6. dmesg | tail
+   Show recent Linux kernel messages.
+
+7. lsblk
+   Show block devices such as disks, swap, and mounted devices.
+
+Important concepts:
+
+- /dev is where Linux exposes devices as files.
+- /dev/null is like a black hole. Data sent to it disappears.
+- /dev/zero generates zero bytes.
+- /dev/random generates random data.
+- dmesg shows kernel messages.
+- lsblk shows block devices.
+- In WSL, device information may look different from a real Linux machine or embedded board.
