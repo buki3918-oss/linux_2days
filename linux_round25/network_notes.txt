@@ -1,0 +1,33 @@
+Linux Round 25: curl, wget, and Basic Network Commands
+
+Commands practiced:
+
+1. ping -c 4 google.com
+   Test network connection.
+
+2. curl https://example.com
+   Send a request to a website and print the response.
+
+3. curl https://example.com -o example.html
+   Save the response into a file.
+
+4. head example.html
+   Check the first few lines of the downloaded file.
+
+5. curl -I https://example.com
+   Show only HTTP response headers.
+
+6. wget --version | head
+   Check whether wget is installed.
+
+7. wget https://example.com -O wget_example.html
+   Download a web page and save it as a file.
+
+Important concepts:
+
+- ping checks basic network connectivity.
+- curl is commonly used to test APIs and download web content.
+- wget is commonly used to download files.
+- HTTP status code 200 means the request succeeded.
+- -o in curl means output file.
+- -O in wget means output document file.

@@ -1,0 +1,35 @@
+Linux Round 24: tar and gzip
+
+Commands practiced:
+
+1. du -sh project_backup
+   Check folder size.
+
+2. tar -cf project_backup.tar project_backup
+   Create a tar archive without compression.
+
+3. tar -tf project_backup.tar
+   List files inside a tar archive.
+
+4. gzip project_backup.tar
+   Compress project_backup.tar into project_backup.tar.gz.
+
+5. tar -xzf project_backup.tar.gz -C extract_test
+   Extract a tar.gz file into extract_test.
+
+6. tar -czf project_backup_2.tar.gz project_backup
+   Create a compressed tar.gz archive directly.
+
+Important concepts:
+
+- tar means tape archive.
+- tar can pack many files into one archive.
+- gzip compresses files.
+- .tar means packed but not necessarily compressed.
+- .tar.gz means packed and compressed.
+- -c means create.
+- -x means extract.
+- -t means list.
+- -z means gzip.
+- -f means file.
+- -C means extract to a target directory.
