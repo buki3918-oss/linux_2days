@@ -1,0 +1,41 @@
+Linux Round 27: alias and .bashrc
+
+Commands practiced:
+
+1. alias
+   Show current aliases.
+
+2. alias gs='git status'
+   Create a temporary alias for git status.
+
+3. alias ll='ls -alF'
+   Create a temporary alias for ls -alF.
+
+4. gs
+   Run git status through alias.
+
+5. ll
+   Run ls -alF through alias.
+
+6. alias gs
+   Show the gs alias.
+
+7. unalias gs
+   Remove the temporary gs alias.
+
+8. cp ~/.bashrc ~/.bashrc_backup_round27
+   Backup .bashrc before editing.
+
+9. nano ~/.bashrc
+   Edit bash startup configuration.
+
+10. source ~/.bashrc
+    Reload .bashrc without restarting terminal.
+
+Important concepts:
+
+- alias creates a shortcut for a command.
+- alias only affects the current shell unless written into ~/.bashrc.
+- ~/.bashrc is loaded when a new bash shell starts.
+- source ~/.bashrc reloads the file immediately.
+- It is safer to backup ~/.bashrc before editing it.

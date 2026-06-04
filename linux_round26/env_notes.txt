@@ -1,0 +1,45 @@
+Linux Round 26: Environment Variables and PATH
+
+Commands practiced:
+
+1. echo $PATH
+   Show the PATH environment variable.
+
+2. which python3
+   Show where the python3 command is located.
+
+3. which gcc
+   Show where the gcc command is located.
+
+4. which git
+   Show where the git command is located.
+
+5. which curl
+   Show where the curl command is located.
+
+6. env | head
+   Show the first few environment variables.
+
+7. printenv HOME
+   Show the HOME environment variable.
+
+8. printenv USER
+   Show the current user.
+
+9. printenv PATH
+   Show the PATH variable.
+
+10. export MY_NAME="yichieh"
+    Create a temporary environment variable.
+
+11. echo $MY_NAME
+    Print the MY_NAME variable.
+
+Important concepts:
+
+- Environment variables store system or user settings.
+- PATH tells Linux where to search for commands.
+- which shows the real location of a command.
+- export creates or exports an environment variable.
+- Variables set by export are usually temporary.
+- Permanent shell settings are usually written into ~/.bashrc.
