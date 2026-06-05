@@ -1,0 +1,34 @@
+Linux Round 28: Shell Script Arguments
+
+Commands practiced:
+
+1. nano greet.sh
+   Create a shell script using $1.
+
+2. chmod 755 greet.sh
+   Make greet.sh executable.
+
+3. ./greet.sh yichieh
+   Run greet.sh with one argument.
+
+4. nano add.sh
+   Create a shell script using $1 and $2.
+
+5. ./add.sh 10 20
+   Run add.sh with two arguments.
+
+6. nano args_info.sh
+   Create a shell script showing $0, $1, $2, $@, and $#.
+
+7. ./args_info.sh apple banana cat
+   Run args_info.sh with multiple arguments.
+
+Important concepts:
+
+- $0 means the script name.
+- $1 means the first argument.
+- $2 means the second argument.
+- $@ means all arguments.
+- $# means the number of arguments.
+- Shell scripts can use arguments to become more flexible.
+- result=$(( $1 + $2 )) can be used for integer arithmetic.

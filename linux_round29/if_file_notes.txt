@@ -1,0 +1,36 @@
+Linux Round 29: if Statements and File Checks
+
+Commands practiced:
+
+1. nano check_file.sh
+   Create a script to check whether a file exists.
+
+2. [ -f "$1" ]
+   Check whether the first argument is an existing file.
+
+3. nano check_dir.sh
+   Create a script to check whether a directory exists.
+
+4. [ -d "$1" ]
+   Check whether the first argument is an existing directory.
+
+5. nano check_arg.sh
+   Create a script to check whether an argument is empty.
+
+6. [ -z "$1" ]
+   Check whether the first argument is empty.
+
+7. nano safe_check.sh
+   Create a safer script with if, elif, and else.
+
+Important concepts:
+
+- if starts a condition.
+- then runs commands when the condition is true.
+- else runs commands when the condition is false.
+- elif means else if.
+- fi ends the if block.
+- [ -f "$1" ] checks whether $1 is a file.
+- [ -d "$1" ] checks whether $1 is a directory.
+- [ -z "$1" ] checks whether $1 is empty.
+- Quotes around "$1" are important to avoid errors when the argument is empty or contains spaces.
