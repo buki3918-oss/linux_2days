@@ -1,0 +1,31 @@
+Linux Round 31: while Loop and Interactive Input
+
+Commands practiced:
+
+1. read name
+   Read user input into a variable.
+
+2. while [ $count -le 5 ]; do ... done
+   Repeat commands while the condition is true.
+
+3. count=$(( count + 1 ))
+   Increase count by 1.
+
+4. while true; do ... done
+   Create an infinite loop.
+
+5. break
+   Exit a loop.
+
+6. while read line; do ... done < students.txt
+   Read a file line by line.
+
+Important concepts:
+
+- read can get input from the user.
+- while repeats commands while a condition is true.
+- -le means less than or equal.
+- while true creates an infinite loop.
+- break stops a loop.
+- while read line can process a file line by line.
+- Interactive scripts are useful for simple tools and menus.

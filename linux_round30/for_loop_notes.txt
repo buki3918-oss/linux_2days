@@ -1,0 +1,28 @@
+Linux Round 30: for Loop and Batch Processing
+
+Commands practiced:
+
+1. for f in *.txt; do ... done
+   Loop through all txt files.
+
+2. cat "$f"
+   Print the content of each file.
+
+3. wc -l "$f"
+   Count lines in each file.
+
+4. grep "ERROR" "$f"
+   Search ERROR in each log file.
+
+5. grep -q "ERROR" "$f"
+   Quietly check whether ERROR exists.
+
+Important concepts:
+
+- for loop can process many files one by one.
+- *.txt means all files ending with .txt.
+- *.log means all files ending with .log.
+- f is a variable name used inside the loop.
+- "$f" should be quoted to avoid problems with spaces in file names.
+- grep -q is useful for if conditions.
+- for loops are useful for batch processing logs, data files, and scripts.
