@@ -1,0 +1,31 @@
+Linux Round 32: case Menu and Option Handling
+
+Commands practiced:
+
+1. case "$choice" in ... esac
+   Use case to handle multiple options.
+
+2. read choice
+   Read user input into the choice variable.
+
+3. *)
+   Default case when no other option matches.
+
+4. ;;
+   End one case branch.
+
+5. while true; do ... done
+   Keep showing the menu until the user quits.
+
+6. break
+   Exit the loop.
+
+Important concepts:
+
+- case is useful for menu-style scripts.
+- case can replace long if / elif / else chains.
+- esac ends the case block.
+- *) means the default option.
+- ;; ends each case branch.
+- while true keeps the menu running.
+- break exits the menu loop.

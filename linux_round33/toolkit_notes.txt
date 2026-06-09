@@ -1,0 +1,39 @@
+Linux Round 33: Shell Script Toolkit Integration
+
+Commands practiced:
+
+1. while true; do ... done
+   Keep the toolkit menu running.
+
+2. read choice
+   Read menu option from the user.
+
+3. case "$choice" in ... esac
+   Handle different menu options.
+
+4. [ -f "$filename" ]
+   Check whether a file exists.
+
+5. for f in *.log; do ... done
+   Loop through log files.
+
+6. grep -q "ERROR" "$f"
+   Quietly check whether ERROR exists in a log file.
+
+7. for f in *.txt; do ... done
+   Loop through txt files.
+
+8. wc -l "$f"
+   Count lines in each txt file.
+
+Important concepts:
+
+- A shell script can combine many commands into a small tool.
+- while true keeps the menu running.
+- case is suitable for menu options.
+- read can get user input.
+- if can check file conditions.
+- for can batch process files.
+- grep can search logs.
+- wc -l can count file lines.
+- This kind of script is useful for simple automation and system checks.
