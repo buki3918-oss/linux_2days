@@ -1,0 +1,34 @@
+Linux Round 37: Error Handling and Safe Exit
+
+Commands practiced:
+
+1. $#
+   Number of arguments passed to the script.
+
+2. [ $# -eq 0 ]
+   Check whether no argument was given.
+
+3. [ $# -lt 2 ]
+   Check whether fewer than 2 arguments were given.
+
+4. [ ! -f "$filename" ]
+   Check whether a file does not exist.
+
+5. exit 1
+   Exit with error.
+
+6. exit 0
+   Exit successfully.
+
+7. if [ $? -eq 0 ]
+   Check whether the previous command succeeded.
+
+Important concepts:
+
+- Scripts should validate input before doing real work.
+- Missing arguments should stop the script.
+- Missing files should stop the script.
+- exit 1 means failure.
+- exit 0 means success.
+- Safe scripts should not continue after serious errors.
+- Error handling is important for automation, Makefile, CI/CD, and deployment scripts.

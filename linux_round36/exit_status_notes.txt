@@ -1,0 +1,28 @@
+Linux Round 36: Return Code and Exit Status
+
+Commands practiced:
+
+1. echo $?
+   Show the exit status of the previous command.
+
+2. exit 0
+   End a script successfully.
+
+3. exit 1
+   End a script with an error.
+
+4. return 0
+   Return success from a function.
+
+5. return 1
+   Return failure from a function.
+
+Important concepts:
+
+- Every Linux command has an exit status.
+- 0 means success.
+- Non-zero means failure.
+- $? stores the exit status of the previous command.
+- exit ends the whole script.
+- return ends a function and sends a return code.
+- Exit status is important for automation, Makefile, CI/CD, and deployment scripts.
