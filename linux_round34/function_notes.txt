@@ -1,0 +1,30 @@
+Linux Round 34: Shell Script Functions
+
+Commands practiced:
+
+1. say_hello() { ... }
+   Define a shell function.
+
+2. say_hello
+   Call a shell function.
+
+3. greet_user() { ... }
+   Define a function with an argument.
+
+4. greet_user "yichieh"
+   Call a function with one argument.
+
+5. show_system_info() { ... }
+   Create a function to show user, path, and date.
+
+6. check_file() { ... }
+   Create a function to check whether a file exists.
+
+Important concepts:
+
+- A function is a reusable block of commands.
+- Function definition uses name() { ... }.
+- Function calls usually do not use parentheses.
+- Functions can receive arguments like $1, $2, and $@.
+- Functions make shell scripts easier to read and maintain.
+- Repeated code should often be moved into functions.

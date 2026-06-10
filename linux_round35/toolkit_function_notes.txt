@@ -1,0 +1,30 @@
+Linux Round 35: Refactor Linux Toolkit with Functions
+
+Commands practiced:
+
+1. show_menu() { ... }
+   Create a function to display the menu.
+
+2. show_system_info() { ... }
+   Create a function to show user, path, and date.
+
+3. check_file_exists() { ... }
+   Create a function to check whether a file exists.
+
+4. search_error_logs() { ... }
+   Create a function to search ERROR in log files.
+
+5. count_txt_files() { ... }
+   Create a function to count lines in txt files.
+
+6. case "$choice" in ... esac
+   Use case to call different functions.
+
+Important concepts:
+
+- Refactoring means improving code structure without changing behavior.
+- Functions make long scripts easier to read.
+- Each function should do one clear job.
+- The menu only handles user choices.
+- The real work is moved into functions.
+- This makes the script easier to maintain and extend.
