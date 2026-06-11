@@ -1,0 +1,25 @@
+Linux Round 38: set -e and Bash Strict Mode
+
+Commands practiced:
+
+1. set -e
+   Stop the script when a command fails.
+
+2. set -u
+   Stop the script when using an undefined variable.
+
+3. set -o pipefail
+   Make a pipeline fail if any command in the pipeline fails.
+
+4. set -euo pipefail
+   Enable strict mode.
+
+Important concepts:
+
+- Without set -e, a script may continue after an error.
+- set -e stops the script immediately when a command fails.
+- set -u helps catch undefined variables.
+- pipefail helps catch errors inside pipelines.
+- set -euo pipefail is commonly used in safer shell scripts.
+- Strict mode helps prevent hidden errors.
+- This is useful for automation, Makefile, CI/CD, deployment, and system maintenance scripts.

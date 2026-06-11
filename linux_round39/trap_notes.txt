@@ -1,0 +1,31 @@
+Linux Round 39: trap and Cleanup Mechanism
+
+Commands practiced:
+
+1. trap cleanup EXIT
+   Run cleanup when the script exits.
+
+2. trap 'error_handler $LINENO' ERR
+   Run error_handler when an error occurs.
+
+3. cleanup() { ... }
+   Define a cleanup function.
+
+4. error_handler() { ... }
+   Define an error handling function.
+
+5. mktemp
+   Create a temporary file safely.
+
+6. rm -f
+   Remove a file without error if it does not exist.
+
+Important concepts:
+
+- trap can run commands automatically when a script exits or fails.
+- EXIT runs when the script is about to exit.
+- ERR runs when a command fails under set -e.
+- cleanup is useful for removing temporary files.
+- error_handler is useful for debugging.
+- mktemp creates safer temporary files than manually naming temp.txt.
+- trap is important for reliable automation scripts.
