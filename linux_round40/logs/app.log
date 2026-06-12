@@ -1,0 +1,7 @@
+INFO: system started
+INFO: user login
+WARNING: disk usage high
+ERROR: database connection failed
+INFO: retry connection
+ERROR: timeout
+INFO: system finished

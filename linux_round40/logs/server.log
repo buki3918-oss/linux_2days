@@ -1,0 +1,6 @@
+INFO: server boot
+INFO: request received
+WARNING: slow response
+INFO: request completed
+ERROR: service unavailable
+INFO: server shutdown

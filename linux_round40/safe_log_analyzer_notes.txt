@@ -1,0 +1,72 @@
+Linux Round 40: Safe Log Analyzer Project
+
+Project name:
+Safe Log Analyzer
+
+Main script:
+safe_log_analyzer.sh
+
+Purpose:
+Build a small shell script project for safely analyzing log files.
+
+Functions:
+
+1. check_log_dir()
+   Check whether the logs directory exists.
+
+2. show_menu()
+   Display the interactive menu.
+
+3. show_log_files()
+   Show log files in the logs directory.
+
+4. search_error()
+   Search ERROR lines in all log files.
+
+5. search_warning()
+   Search WARNING lines in all log files.
+
+6. count_log_lines()
+   Count lines in each log file and total lines.
+
+7. generate_report()
+   Generate log_report.txt.
+
+8. main()
+   Run the menu loop and handle user choices.
+
+Important concepts used:
+
+- set -euo pipefail
+- function
+- case menu
+- read
+- if
+- for loop
+- grep
+- wc -l
+- trap cleanup EXIT
+- trap error_handler ERR
+- exit 0
+- exit 1
+- safe error handling
+
+Testing:
+
+1. Normal test:
+   ./safe_log_analyzer.sh
+
+2. Menu inputs:
+   1, 2, 3, 4, 5, q
+
+3. Report check:
+   cat log_report.txt
+
+4. Error handling test:
+   mv logs logs_backup
+   ./safe_log_analyzer.sh
+   echo $?
+   mv logs_backup logs
+
+Key lesson:
+This round combines previous Linux shell skills into a small but structured automation project.
