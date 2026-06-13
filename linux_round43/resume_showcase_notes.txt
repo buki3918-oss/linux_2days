@@ -1,0 +1,35 @@
+Linux Round 43: Resume Showcase Organization
+
+Purpose:
+Make the linux_2days repository easier to understand as a GitHub portfolio project.
+
+Files created:
+
+1. PROJECT_SUMMARY.md
+   A short project summary for recruiters, engineers, or interviewers.
+
+2. LEARNING_ROADMAP.md
+   A structured learning roadmap showing the progression from basic Linux commands to shell script automation.
+
+3. linux_round43/resume_showcase_notes.txt
+   Notes for this round.
+
+Why this matters:
+
+- A GitHub repository should not only contain code.
+- It should explain what the project is.
+- It should show what skills were practiced.
+- It should highlight the most important project.
+- It should be easy for others to understand quickly.
+
+Important presentation ideas:
+
+1. Put the main project near the top.
+2. Explain the learning purpose clearly.
+3. Show the technical skills used.
+4. Mention selected highlights.
+5. Make the repo easy to scan.
+6. Avoid making the reader open every folder manually.
+
+Key lesson:
+A good GitHub project needs both implementation and explanation.
