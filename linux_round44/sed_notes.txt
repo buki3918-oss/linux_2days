@@ -1,0 +1,60 @@
+Linux Round 44: sed Text Processing
+
+Purpose:
+Practice sed for basic text processing.
+
+What is sed:
+sed means stream editor.
+It is often used to replace, print, delete, or clean text lines.
+
+Files used:
+
+1. message.txt
+2. message_hi.txt
+3. message_backup.txt
+4. app.log
+5. clean_app.log
+
+Important commands:
+
+1. Replace text:
+   sed 's/Hello/Hi/' message.txt
+
+2. Save replaced result to a new file:
+   sed 's/Hello/Hi/' message.txt > message_hi.txt
+
+3. Modify file directly:
+   sed -i 's/Hello/Hi/' message.txt
+
+4. Print one line:
+   sed -n '2p' app.log
+
+5. Print line range:
+   sed -n '2,4p' app.log
+
+6. Delete one line:
+   sed '1d' app.log
+
+7. Delete line range:
+   sed '2,4d' app.log
+
+8. Delete lines containing WARNING:
+   sed '/WARNING/d' app.log
+
+9. Print lines containing ERROR:
+   sed -n '/ERROR/p' app.log
+
+10. Create cleaned log:
+    sed '/WARNING/d' app.log > clean_app.log
+
+Important concepts:
+
+- s/old/new/ means substitute old text with new text.
+- sed without -i only prints the result and does not modify the original file.
+- sed -i modifies the original file directly.
+- sed -n with p can print specific lines.
+- d means delete.
+- /pattern/ means lines matching a pattern.
+
+Key lesson:
+sed is useful for quickly editing and cleaning text files from the command line.

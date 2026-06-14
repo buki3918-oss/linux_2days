@@ -1,0 +1,5 @@
+2026-06-13 INFO login user=Alice
+2026-06-13 ERROR database user=Bob
+2026-06-13 INFO logout user=Alice
+2026-06-13 WARNING disk user=System
+2026-06-13 ERROR timeout user=Cindy

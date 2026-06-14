@@ -1,0 +1,6 @@
+INFO system started
+ERROR database failed
+INFO retry
+ERROR timeout
+ERROR service unavailable
+INFO system finished

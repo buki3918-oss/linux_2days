@@ -1,0 +1,77 @@
+Linux Round 45: awk Field Processing
+
+Purpose:
+Practice awk for field processing, numeric calculation, CSV analysis, and log analysis.
+
+What is awk:
+awk is useful for processing columns and fields.
+It can print specific fields, filter rows, and calculate numbers.
+
+Files used:
+
+1. scores.txt
+2. sales.csv
+3. access.log
+
+Important commands:
+
+1. Print first field:
+   awk '{print $1}' scores.txt
+
+2. Print third field:
+   awk '{print $3}' scores.txt
+
+3. Print name and score:
+   awk '{print $1, $3}' scores.txt
+
+4. Add labels:
+   awk '{print "Name:", $1, "Score:", $3}' scores.txt
+
+5. Filter score greater than 80:
+   awk '$3 > 80 {print $1, $3}' scores.txt
+
+6. Calculate total score:
+   awk '{sum += $3} END {print sum}' scores.txt
+
+7. Calculate average score:
+   awk '{sum += $3} END {print sum / NR}' scores.txt
+
+8. Process CSV with comma delimiter:
+   awk -F, '{print $1, $3}' sales.csv
+
+9. Skip header:
+   awk -F, 'NR > 1 {print $1, $3}' sales.csv
+
+10. Calculate total sales:
+    awk -F, 'NR > 1 {sum += $3} END {print "Total:", sum}' sales.csv
+
+11. Filter price greater than 500:
+    awk -F, 'NR > 1 && $3 > 500 {print $1, $2, $3}' sales.csv
+
+12. Print log level:
+    awk '{print $2}' access.log
+
+13. Print ERROR lines:
+    awk '$2 == "ERROR" {print $0}' access.log
+
+14. Print ERROR users:
+    awk '$2 == "ERROR" {print $4}' access.log
+
+15. Count ERROR lines:
+    awk '$2 == "ERROR" {count++} END {print "ERROR count:", count}' access.log
+
+Important concepts:
+
+- $1 means first field.
+- $2 means second field.
+- $3 means third field.
+- $0 means the whole line.
+- NR means row number.
+- END means after all lines are processed.
+- -F, means use comma as field separator.
+- && means AND condition.
+- count++ means count = count + 1.
+- sum += $3 means sum = sum + $3.
+
+Key lesson:
+awk is useful for extracting fields, filtering records, and calculating values from text, CSV, and log files.

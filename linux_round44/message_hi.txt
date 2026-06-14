@@ -1,0 +1,5 @@
+Hi Linux
+Hi Shell
+Hi GitHub
+Linux is powerful
+Shell script is useful
