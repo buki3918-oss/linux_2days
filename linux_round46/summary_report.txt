@@ -1,0 +1,15 @@
+Log Summary Report
+==================
+Generated at: Tue Jun 16 22:15:23 CST 2026
+
+Source file: raw_app.log
+Clean file: clean_app.log
+
+Log level count:
+INFO: 4
+WARNING: 2
+ERROR: 2
+
+ERROR users:
+user=Bob
+user=Cindy

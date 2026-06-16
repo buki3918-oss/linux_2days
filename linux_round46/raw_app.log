@@ -1,0 +1,10 @@
+2026-06-14 09:00:01 INFO system started user=system
+2026-06-14 09:01:10 DEBUG checking config user=system
+2026-06-14 09:02:22 INFO user login user=Alice
+2026-06-14 09:03:05 WARNING disk usage high user=system
+2026-06-14 09:04:18 ERROR database failed user=Bob
+2026-06-14 09:05:20 DEBUG retry counter user=system
+2026-06-14 09:06:30 INFO retry database user=system
+2026-06-14 09:07:45 ERROR timeout user=Cindy
+2026-06-14 09:08:50 WARNING memory high user=system
+2026-06-14 09:09:59 INFO system finished user=system

@@ -1,0 +1,120 @@
+Linux Round 46: sed + awk Integration Practice
+
+Purpose:
+Practice using sed and awk together for log cleaning and log summary analysis.
+
+Main idea:
+
+- sed is used to clean text.
+- awk is used to process fields and calculate summary results.
+
+Files used:
+
+1. raw_app.log
+   Original log file.
+
+2. clean_app.log
+   Cleaned log file after removing DEBUG lines.
+
+3. summary_report.txt
+   Summary report generated from clean_app.log.
+
+4. analyze_log.sh
+   Shell script that automates the whole process.
+
+Important commands:
+
+1. Remove DEBUG lines:
+   sed '/DEBUG/d' raw_app.log > clean_app.log
+
+2. Print log level:
+   awk '{print $3}' clean_app.log
+
+3. Count log levels:
+   awk '{count[$3]++} END {for (level in count) print level, count[level]}' clean_app.log
+
+4. Print ordered summary:
+   awk '{count[$3]++} END {print "INFO:", count["INFO"]; print "WARNING:", count["WARNING"]; print "ERROR:", count["ERROR"]}' clean_app.log
+
+5. Print ERROR users:
+   awk '$3 == "ERROR" {print $6}' clean_app.log
+
+Script created:
+
+analyze_log.sh
+
+Functions:
+
+1. check_file()
+   Check whether raw_app.log exists.
+
+2. clean_log()
+   Use sed to remove DEBUG lines.
+
+3. generate_report()
+   Use awk to count log levels and extract ERROR users.
+
+4. main()
+   Run the complete analysis process.
+
+Important concepts:
+
+- sed can clean unwanted log lines.
+- awk can count categories.
+- awk array can store counts.
+- count[$3]++ means count each log level.
+- Shell script can combine multiple Linux tools into one workflow.
+- set -euo pipefail makes the script safer.
+
+Error handling test:
+
+mv raw_app.log raw_app_backup.log
+./analyze_log.sh
+echo $?
+mv raw_app_backup.log raw_app.log
+
+Expected result:
+
+Error: missing file raw_app.log
+1
+
+Key lesson:
+A practical Linux workflow often combines multiple tools. sed cleans the data, awk analyzes the fields, and shell script automates the whole process.
+Important correction:
+
+At first, I used this command to print ERROR users:
+
+awk '$3 == "ERROR" {print $6}' clean_app.log
+
+However, this only printed user=Bob and missed user=Cindy.
+
+Reason:
+Different ERROR log lines may have different numbers of fields.
+
+Example 1:
+2026-06-14 09:04:18 ERROR database failed user=Bob
+user=Bob is $6.
+
+Example 2:
+2026-06-14 09:07:45 ERROR timeout user=Cindy
+user=Cindy is $5.
+
+Better solution:
+
+awk '$3 == "ERROR" {
+    for (i = 1; i <= NF; i++) {
+        if ($i ~ /^user=/) {
+            print $i
+        }
+    }
+}' clean_app.log
+
+New concepts:
+
+- NF means number of fields in the current line.
+- $i means the field at position i.
+- ~ means pattern matching.
+- /^user=/ means the field starts with user=.
+
+Key lesson:
+When log lines do not have fixed field positions, do not rely on a fixed column like $6. It is safer to search for the field pattern.
