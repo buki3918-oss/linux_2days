@@ -1,0 +1,15 @@
+Scheduled Log Report
+====================
+Generated at: Wed Jun 17 00:00:53 CST 2026
+
+Source log: /home/yichieh/linux_2days/linux_round48/logs/app.log
+Clean log: /home/yichieh/linux_2days/linux_round48/logs/clean_app.log
+
+Log level count:
+INFO: 4
+WARNING: 2
+ERROR: 2
+
+ERROR users:
+user=Bob
+user=Cindy

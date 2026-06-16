@@ -1,0 +1,47 @@
+Linux Round 49: Linux Project Structure Organization
+
+Purpose:
+Organize the scheduled log report project into a clearer GitHub-style project structure.
+
+Files added:
+
+1. README.md
+   Explains project purpose, folder structure, usage, output, cron test, and technical concepts.
+
+2. run_report.sh
+   A simple entry script for running the report generator.
+
+3. .gitignore
+   Ignores temporary files such as *.tmp and *.bak.
+
+4. structure_notes.txt
+   Notes for this round.
+
+Project structure:
+
+linux_round48/
+├── README.md
+├── .gitignore
+├── run_report.sh
+├── bin/
+│   └── generate_log_report.sh
+├── logs/
+│   ├── app.log
+│   └── clean_app.log
+├── reports/
+│   └── log_report.txt
+├── project_notes.txt
+└── structure_notes.txt
+
+Important concepts:
+
+- README.md helps other people understand the project.
+- run_report.sh provides an easy entry point.
+- bin/ stores executable scripts.
+- logs/ stores input and cleaned logs.
+- reports/ stores generated reports.
+- .gitignore prevents unnecessary temporary files from being tracked.
+- A clear project structure is important for GitHub and resume presentation.
+
+Key lesson:
+A project is easier to understand when code, input data, output reports, and documentation are clearly separated.

@@ -1,0 +1,60 @@
+Linux Round 48: Scheduled Log Report Project
+
+Purpose:
+Build a small scheduled log report project by combining sed, awk, shell script, and cron.
+
+Project structure:
+
+linux_round48/
+├── bin/
+│   └── generate_log_report.sh
+├── logs/
+│   ├── app.log
+│   └── clean_app.log
+├── reports/
+│   └── log_report.txt
+└── project_notes.txt
+
+Main idea:
+
+1. logs/app.log stores the original log.
+2. bin/generate_log_report.sh generates the report.
+3. reports/log_report.txt stores the generated report.
+4. cron can run the script automatically.
+
+Tools used:
+
+- sed
+- awk
+- shell script
+- cron
+- absolute paths
+
+Important commands:
+
+1. Remove DEBUG lines:
+   sed '/DEBUG/d' "$RAW_LOG" > "$CLEAN_LOG"
+
+2. Count log levels:
+   awk '{count[$3]++} END {print "INFO:", count["INFO"]; print "WARNING:", count["WARNING"]; print "ERROR:", count["ERROR"]}' "$CLEAN_LOG"
+
+3. Extract ERROR users:
+   awk '$3 == "ERROR" {for (i = 1; i <= NF; i++) {if ($i ~ /^user=/) print $i}}' "$CLEAN_LOG"
+
+4. Run script manually:
+   ./bin/generate_log_report.sh
+
+5. Run script every minute with cron:
+   * * * * * /home/yichieh/linux_2days/linux_round48/bin/generate_log_report.sh
+
+Important concepts:
+
+- bin/ is used for executable scripts.
+- logs/ is used for log files.
+- reports/ is used for generated reports.
+- cron jobs should use absolute paths.
+- scripts used by cron should also use absolute paths internally.
+- scheduled tasks should be removed after testing.
+
+Key lesson:
+This round turns a manual log analysis workflow into a scheduled reporting project.
