@@ -1,0 +1,69 @@
+Linux Round 50: Process Monitoring Basics
+
+Purpose:
+Practice basic Linux process and system monitoring commands.
+
+Important concepts:
+
+1. Process
+   A process is a running program.
+
+2. PID
+   PID means process ID.
+   Each running process has a unique PID.
+
+3. Monitoring
+   Monitoring means observing system status, such as CPU, memory, disk, and running processes.
+
+Commands practiced:
+
+1. ps
+   Show current terminal processes.
+
+2. ps aux
+   Show all running processes.
+
+3. ps aux | head
+   Show the first few process records.
+
+4. ps aux | grep bash
+   Search bash-related processes.
+
+5. pgrep bash
+   Find bash process IDs.
+
+6. pgrep -a bash
+   Find bash processes with command names.
+
+7. sleep 300 &
+   Start a background process.
+
+8. kill PID
+   Stop a process by PID.
+
+9. uptime
+   Show system running time and load average.
+
+10. free -h
+    Show memory usage.
+
+11. df -h
+    Show disk usage.
+
+12. du -sh folder
+    Show folder size.
+
+13. top
+    Show real-time process and resource usage.
+
+Files created:
+
+1. ps_snapshot.txt
+2. uptime.txt
+3. memory.txt
+4. disk.txt
+5. folder_size.txt
+6. process_monitoring_notes.txt
+
+Key lesson:
+Process monitoring helps us understand what the Linux system is doing and whether CPU, memory, disk, or processes need attention.

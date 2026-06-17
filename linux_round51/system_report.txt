@@ -1,0 +1,58 @@
+Linux System Monitoring Report
+==============================
+Generated at: Wed Jun 17 13:12:39 CST 2026
+
+1. System Uptime
+----------------
+ 13:12:39 up  2:16,  1 user,  load average: 0.00, 0.00, 0.00
+
+2. Memory Usage
+---------------
+               total        used        free      shared  buff/cache   available
+Mem:           7.6Gi       484Mi       7.1Gi       3.5Mi       174Mi       7.1Gi
+Swap:          2.0Gi          0B       2.0Gi
+
+3. Disk Usage
+-------------
+Filesystem      Size  Used Avail Use% Mounted on
+none            3.9G     0  3.9G   0% /usr/lib/modules/6.6.114.1-microsoft-standard-WSL2
+none            3.9G  4.0K  3.9G   1% /mnt/wsl
+drivers         476G  427G   49G  90% /usr/lib/wsl/drivers
+/dev/sdd       1007G  2.4G  954G   1% /
+none            3.9G   44K  3.9G   1% /mnt/wslg
+none            3.9G     0  3.9G   0% /usr/lib/wsl/lib
+rootfs          3.8G  2.8M  3.8G   1% /init
+none            3.9G  520K  3.9G   1% /run
+none            3.9G     0  3.9G   0% /run/lock
+none            3.9G     0  3.9G   0% /run/shm
+none            3.9G   80K  3.9G   1% /mnt/wslg/versions.txt
+none            3.9G   80K  3.9G   1% /mnt/wslg/doc
+C:\             476G  427G   49G  90% /mnt/c
+tmpfs           779M   20K  779M   1% /run/user/1000
+
+4. Project Folder Size
+----------------------
+161M	/home/yichieh/linux_2days
+
+5. Top Processes Snapshot
+-------------------------
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1  21652 12968 ?        Ss   10:55   0:01 /sbin/init
+root           2  0.0  0.0   3172  2200 hvc0     Sl+  10:55   0:00 /init
+root           6  0.0  0.0   3188  2132 hvc0     Sl+  10:55   0:00 plan9 --control-socket 7 --log-level 4 --server-fd 8 --pipe-fd 10 --log-truncate
+root          52  0.0  0.1  66752 15800 ?        S<s  10:55   0:00 /usr/lib/systemd/systemd-journald
+root          98  0.0  0.0  25136  6540 ?        Ss   10:55   0:00 /usr/lib/systemd/systemd-udevd
+systemd+     154  0.0  0.1  21460 13040 ?        Ss   10:55   0:00 /usr/lib/systemd/systemd-resolved
+systemd+     155  0.0  0.1  91028  7980 ?        Ssl  10:55   0:00 /usr/lib/systemd/systemd-timesyncd
+root         164  0.0  0.0   4236  2768 ?        Ss   10:55   0:00 /usr/sbin/cron -f -P
+message+     165  0.0  0.0   9592  5272 ?        Ss   10:55   0:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+
+6. Bash Processes
+-----------------
+293 -bash
+362 -bash
+
+7. Cron Process
+---------------
+164 /usr/sbin/cron -f -P
+

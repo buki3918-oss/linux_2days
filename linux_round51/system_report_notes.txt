@@ -1,0 +1,67 @@
+Linux Round 51: Process Monitoring Report Practice
+
+Purpose:
+Create a shell script that collects Linux system information and generates a system monitoring report.
+
+Files created:
+
+1. generate_system_report.sh
+2. system_report.txt
+3. system_report_notes.txt
+
+Commands used:
+
+1. uptime
+   Shows system running time and load average.
+
+2. free -h
+   Shows memory usage in human-readable format.
+
+3. df -h
+   Shows disk usage in human-readable format.
+
+4. du -sh
+   Shows folder size summary.
+
+5. ps aux | head
+   Shows a snapshot of top process records.
+
+6. pgrep -a bash
+   Shows bash processes.
+
+7. pgrep -a cron
+   Shows cron process.
+
+Important script settings:
+
+set -euo pipefail
+
+Meaning:
+
+- set -e:
+  Stop when a command fails.
+
+- set -u:
+  Stop when using an undefined variable.
+
+- pipefail:
+  Catch errors inside pipelines.
+
+Why use || true:
+
+pgrep returns a non-zero status if no process is found.
+Because the script uses set -e, this could stop the script.
+Adding || true prevents the script from stopping when pgrep finds nothing.
+
+Report sections:
+
+1. System Uptime
+2. Memory Usage
+3. Disk Usage
+4. Project Folder Size
+5. Top Processes Snapshot
+6. Bash Processes
+7. Cron Process
+
+Key lesson:
+A monitoring script can collect system status automatically and save it into a report file for later checking.
