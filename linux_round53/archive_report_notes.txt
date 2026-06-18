@@ -1,0 +1,77 @@
+Linux Round 53: System Report Archive Project
+
+Purpose:
+Build a small system monitoring project that generates a current report and keeps archived reports with timestamps.
+
+Project structure:
+
+linux_round53/
+├── archive/
+├── reports/
+│   └── system_report.txt
+├── generate_archived_system_report.sh
+└── archive_report_notes.txt
+
+Main script:
+generate_archived_system_report.sh
+
+Main workflow:
+
+1. prepare_dirs
+   Create reports/ and archive/ folders if they do not exist.
+
+2. generate_report
+   Generate the latest system report into reports/system_report.txt.
+
+3. archive_report
+   Copy the latest report into archive/ with a timestamp filename.
+
+4. rotate_archive
+   Keep only the latest 3 archived reports and remove older files.
+
+Important variables:
+
+BASE_DIR:
+Project root path.
+
+REPORT_DIR:
+Stores the current report.
+
+ARCHIVE_DIR:
+Stores archived reports.
+
+REPORT_FILE:
+The latest report file.
+
+TIMESTAMP:
+Used to create unique archive filenames.
+
+ARCHIVE_FILE:
+Archived report with timestamp.
+
+KEEP_COUNT:
+Number of archived reports to keep.
+
+Important commands:
+
+1. date +"%Y%m%d_%H%M%S"
+   Create timestamp.
+
+2. cp
+   Copy current report to archive.
+
+3. ls -1t
+   Sort files by modification time, newest first.
+
+4. tail -n +4
+   Select files starting from the 4th file.
+
+5. xargs rm -f
+   Delete old archive files.
+
+Why use rotation:
+Without rotation, archived reports will grow forever.
+Rotation keeps the project clean by retaining only the latest N reports.
+
+Key lesson:
+A monitoring script becomes more practical when it can archive reports and automatically remove old ones.

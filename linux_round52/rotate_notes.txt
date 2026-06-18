@@ -1,0 +1,58 @@
+Linux Round 52: Log Rotation Basics
+
+Purpose:
+Understand the basic idea of log rotation and report archiving.
+
+Why log rotation is needed:
+Logs and reports can grow forever if we never clean them.
+Log rotation helps keep old logs, compress them, and remove very old files.
+
+Basic ideas:
+
+1. Backup
+   Copy the current log before it is overwritten.
+
+2. Timestamp
+   Add date and time to filenames to avoid overwriting old files.
+
+3. Archive
+   Store old logs or reports in an archive folder.
+
+4. Compression
+   Use gzip to reduce file size.
+
+5. Retention
+   Keep only the latest N files and remove older ones.
+
+Commands practiced:
+
+1. cp
+   Copy files.
+
+2. mv
+   Move files.
+
+3. date +"%Y%m%d_%H%M%S"
+   Generate a timestamp.
+
+4. gzip
+   Compress log files.
+
+5. ls -1t
+   List files by modification time, newest first.
+
+6. head -3
+   Keep the first 3 lines.
+
+7. tail -n +4
+   Show files starting from the 4th line.
+
+Files and folders:
+
+1. app.log
+2. app.log.backup
+3. archive/
+4. rotate_notes.txt
+
+Key lesson:
+Log rotation prevents logs and reports from growing forever and helps keep old records in an organized way.
