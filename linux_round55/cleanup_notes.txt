@@ -1,0 +1,66 @@
+Linux Round 55: Cleanup Old Files Project
+
+Purpose:
+Build a cleanup script that uses find to preview and delete temporary, backup, and old files.
+
+Project structure:
+
+linux_round55/
+├── cleanup_old_files.sh
+├── cleanup_report.txt
+├── cleanup_notes.txt
+├── data/
+├── logs/
+├── temp/
+└── archive/
+
+Main script:
+cleanup_old_files.sh
+
+Modes:
+
+1. preview
+   Generate cleanup_report.txt.
+   It only lists files that match cleanup rules.
+   It does not delete files.
+
+2. delete
+   Delete matched files.
+
+Cleanup rules:
+
+1. Delete temporary files:
+   *.tmp
+
+2. Delete backup files:
+   *.bak
+
+3. Delete old log files:
+   *.log older than 7 days
+
+4. Delete old text reports:
+   *.txt older than 7 days
+
+Important commands:
+
+1. find "$BASE_DIR" -type f -name "*.tmp"
+
+2. find "$BASE_DIR" -type f -name "*.bak"
+
+3. find "$BASE_DIR" -type f -mtime +7
+
+4. find "$BASE_DIR" -type f -name "*.log" -mtime +7
+
+5. find "$BASE_DIR" -type f -name "*.txt" -mtime +7
+
+6. find "$BASE_DIR" -type f -name "*.tmp" -delete
+
+Important safety rule:
+Always preview before delete.
+
+Why preview mode is important:
+File deletion is dangerous.
+Preview mode lets us check the target files before actually removing them.
+
+Key lesson:
+A safe cleanup script should separate preview and delete modes.

@@ -1,0 +1,60 @@
+Linux Round 54: Advanced find Practice
+
+Purpose:
+Practice using find to search files by name, type, size, and modified time.
+
+Commands practiced:
+
+1. find . -name "*.log"
+   Find files by filename pattern.
+
+2. find . -type f
+   Find regular files.
+
+3. find . -type d
+   Find directories.
+
+4. find . -type f -name "*.log"
+   Find regular files ending with .log.
+
+5. find . -type f -size +50k
+   Find files larger than 50KB.
+
+6. find . -type f -size -10k
+   Find files smaller than 10KB.
+
+7. find . -type f -mtime +3
+   Find files modified more than 3 days ago.
+
+8. find . -type f -mtime -1
+   Find files modified within 1 day.
+
+9. find . -type f -name "*.tmp" -exec ls -lh {} \;
+   Run ls -lh on each found file.
+
+10. find . -type f -name "*.tmp" -delete
+    Delete matched files.
+
+Important concepts:
+
+- -name searches by filename.
+- -type f searches regular files.
+- -type d searches directories.
+- -size searches by file size.
+- -mtime searches by modified time.
+- -exec runs a command on matched files.
+- -delete deletes matched files.
+
+Safety rule:
+Always list files first before deleting them.
+
+Correct workflow:
+
+1. Preview:
+   find . -type f -name "*.tmp"
+
+2. Delete:
+   find . -type f -name "*.tmp" -delete
+
+Key lesson:
+find is a powerful tool for locating and cleaning files, but deletion should always be done carefully.
