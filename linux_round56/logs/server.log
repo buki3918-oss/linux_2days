@@ -1,0 +1,4 @@
+2026-06-20 10:00:01 INFO server started
+2026-06-20 10:01:30 ERROR port already in use
+2026-06-20 10:02:20 WARNING retrying service
+2026-06-20 10:03:00 INFO server running

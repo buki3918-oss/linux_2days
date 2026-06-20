@@ -1,0 +1,5 @@
+2026-06-20 09:00:01 INFO app started
+2026-06-20 09:01:10 WARNING memory usage high
+2026-06-20 09:02:22 ERROR database connection failed
+2026-06-20 09:03:05 INFO app recovered
+2026-06-20 09:04:30 ERROR payment service timeout

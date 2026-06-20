@@ -1,0 +1,62 @@
+Linux Round 57: Log Search Tool Project
+
+Purpose:
+Build a simple log search tool using find, grep, and xargs.
+
+Project structure:
+
+linux_round57/
+├── logs/
+├── reports/
+│   └── search_report.txt
+├── search_logs.sh
+└── search_tool_notes.txt
+
+Main script:
+search_logs.sh
+
+Usage:
+
+./search_logs.sh KEYWORD
+
+Examples:
+
+./search_logs.sh ERROR
+./search_logs.sh WARNING
+./search_logs.sh CRITICAL
+
+Main workflow:
+
+1. check_args
+   Check whether the user provides exactly one keyword.
+
+2. prepare_dirs
+   Create reports/ if it does not exist.
+
+3. search_logs
+   Search all .log files under logs/ and generate search_report.txt.
+
+Important commands:
+
+1. find "$LOG_DIR" -type f -name "*.log"
+   Find all log files.
+
+2. xargs grep -nH "$keyword"
+   Search keyword in all log files.
+
+3. grep -c "$keyword" "$LOG_DIR"/*.log
+   Count matched lines by file.
+
+4. grep -nH -E "ERROR|WARNING"
+   Search ERROR or WARNING lines.
+
+5. -print0 and xargs -0
+   Safer way to handle filenames with spaces.
+
+Why use || true:
+grep returns non-zero when no match is found.
+With set -e, this may stop the script.
+Adding || true prevents the script from stopping when no match is found.
+
+Key lesson:
+A useful log search tool should support keyword input, generate a report, and handle no-match cases safely.

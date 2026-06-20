@@ -1,0 +1,28 @@
+Log Search Report
+=================
+Generated at: Sat Jun 20 15:23:42 CST 2026
+
+Log directory: /home/yichieh/linux_2days/linux_round57/logs
+Keyword: CRITICAL
+
+1. Matched Lines
+----------------
+
+2. Match Count by File
+----------------------
+/home/yichieh/linux_2days/linux_round57/logs/app.log:0
+/home/yichieh/linux_2days/linux_round57/logs/debug.log:0
+/home/yichieh/linux_2days/linux_round57/logs/device.log:0
+/home/yichieh/linux_2days/linux_round57/logs/server.log:0
+
+3. ERROR or WARNING Summary
+---------------------------
+/home/yichieh/linux_2days/linux_round57/logs/server.log:2:2026-06-20 10:01:30 ERROR port already in use
+/home/yichieh/linux_2days/linux_round57/logs/server.log:3:2026-06-20 10:02:20 WARNING retrying service
+/home/yichieh/linux_2days/linux_round57/logs/server.log:5:2026-06-20 10:04:10 WARNING high request latency
+/home/yichieh/linux_2days/linux_round57/logs/app.log:2:2026-06-20 09:01:10 WARNING memory usage high
+/home/yichieh/linux_2days/linux_round57/logs/app.log:3:2026-06-20 09:02:22 ERROR database connection failed
+/home/yichieh/linux_2days/linux_round57/logs/app.log:5:2026-06-20 09:04:30 ERROR payment service timeout
+/home/yichieh/linux_2days/linux_round57/logs/device.log:2:2026-06-20 11:01:15 WARNING sensor value unstable
+/home/yichieh/linux_2days/linux_round57/logs/device.log:3:2026-06-20 11:02:30 ERROR device read failed
+

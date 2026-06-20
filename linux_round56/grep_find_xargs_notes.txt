@@ -1,0 +1,65 @@
+Linux Round 56: grep, find, and xargs Integration
+
+Purpose:
+Practice searching file contents by combining grep, find, and xargs.
+
+Core tools:
+
+1. grep
+   Search text inside files.
+
+2. find
+   Search files by conditions.
+
+3. xargs
+   Pass command output as arguments to another command.
+
+Important grep options:
+
+1. -n
+   Show line numbers.
+
+2. -H
+   Show filenames.
+
+3. -E
+   Use extended regular expressions.
+
+4. -i
+   Ignore case.
+
+5. -c
+   Count matched lines.
+
+Commands practiced:
+
+1. grep "ERROR" logs/app.log
+
+2. grep -nH "ERROR" logs/app.log
+
+3. grep -nH "ERROR" logs/*.log
+
+4. grep -nH -E "ERROR|WARNING" logs/*.log
+
+5. grep -niH "error" logs/*.log
+
+6. grep -c "ERROR" logs/*.log
+
+7. find . -type f -name "*.log"
+
+8. find . -type f -name "*.log" | xargs grep -nH "ERROR"
+
+9. find . -type f -name "*.log" | xargs grep -nH -E "ERROR|WARNING"
+
+10. find . -type f -name "*.log" -print0 | xargs -0 grep -nH "ERROR"
+
+Important concepts:
+
+- grep searches inside files.
+- find searches for file paths.
+- xargs connects command outputs to another command.
+- find + xargs + grep is useful for searching many files.
+- -print0 and xargs -0 are safer when filenames may contain spaces.
+
+Key lesson:
+Use find to locate files, xargs to pass them, and grep to search their contents.

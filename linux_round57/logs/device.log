@@ -1,0 +1,4 @@
+2026-06-20 11:00:01 INFO device connected
+2026-06-20 11:01:15 WARNING sensor value unstable
+2026-06-20 11:02:30 ERROR device read failed
+2026-06-20 11:03:45 INFO device recovered
