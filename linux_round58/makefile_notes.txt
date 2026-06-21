@@ -1,0 +1,73 @@
+Linux Round 58: Advanced Makefile Practice
+
+Purpose:
+Practice a more realistic Makefile for a multi-file C project.
+
+Project files:
+
+1. main.c
+2. math_utils.c
+3. math_utils.h
+4. Makefile
+
+Important concepts:
+
+1. target
+   The file or action that make wants to build.
+
+2. dependency
+   Files that the target depends on.
+
+3. command
+   The shell command used to build the target.
+
+4. variable
+   A reusable value in Makefile.
+
+Important variables:
+
+CC = gcc
+The C compiler.
+
+CFLAGS = -Wall -Wextra -g
+Compiler warning and debug options.
+
+TARGET = app
+The final executable file.
+
+OBJS = main.o math_utils.o
+Object files.
+
+Build flow:
+
+1. main.c -> main.o
+2. math_utils.c -> math_utils.o
+3. main.o + math_utils.o -> app
+
+Important commands:
+
+make
+Build the default target.
+
+make run
+Build and run the program.
+
+make clean
+Remove app and object files.
+
+Important gcc flags:
+
+-Wall
+Enable common warnings.
+
+-Wextra
+Enable extra warnings.
+
+-g
+Add debug information for gdb.
+
+-c
+Compile source code into object file without linking.
+
+Key lesson:
+Makefile helps automate build, run, and clean steps. This is important for C, firmware, and embedded Linux projects.

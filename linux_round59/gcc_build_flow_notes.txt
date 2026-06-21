@@ -1,0 +1,102 @@
+Linux Round 59: GCC Build Flow
+
+Purpose:
+Understand the GCC build process from C source code to executable program.
+
+GCC build flow:
+
+1. Preprocessing
+   Input: hello.c
+   Output: hello.i
+   Command:
+   gcc -E hello.c -o hello.i
+
+   Purpose:
+   Expand #include and #define.
+
+2. Compiling
+   Input: hello.i
+   Output: hello.s
+   Command:
+   gcc -S hello.i -o hello.s
+
+   Purpose:
+   Convert preprocessed C code into assembly code.
+
+3. Assembling
+   Input: hello.s
+   Output: hello.o
+   Command:
+   gcc -c hello.s -o hello.o
+
+   Purpose:
+   Convert assembly code into object file.
+
+4. Linking
+   Input: hello.o
+   Output: hello_from_steps
+   Command:
+   gcc hello.o -o hello_from_steps
+
+   Purpose:
+   Link object files and libraries into an executable program.
+
+Common file types:
+
+1. .c
+   C source code.
+
+2. .i
+   Preprocessed C source.
+
+3. .s
+   Assembly source.
+
+4. .o
+   Object file.
+
+5. executable
+   Final runnable program.
+
+Important gcc flags:
+
+1. -E
+   Stop after preprocessing.
+
+2. -S
+   Stop after compiling to assembly.
+
+3. -c
+   Stop after assembling to object file.
+
+4. -o
+   Set output filename.
+
+Linking error example:
+
+undefined reference to `add'
+
+Meaning:
+The function was declared and used, but no implementation was linked.
+
+Fix:
+Provide add.c and link it together:
+
+gcc broken.c add.c -o fixed
+
+Object file linking:
+
+gcc -c broken.c -o broken.o
+gcc -c add.c -o add.o
+gcc broken.o add.o -o fixed_from_objects
+
+Symbol check:
+
+nm broken.o | grep add
+U add means broken.o needs add but does not define it.
+
+nm add.o | grep add
+T add means add.o defines add.
+
+Key lesson:
+C programs are built through preprocessing, compiling, assembling, and linking. Understanding this flow is essential for C, firmware, and embedded Linux development.
