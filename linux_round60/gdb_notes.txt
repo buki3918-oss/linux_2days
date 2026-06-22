@@ -1,0 +1,66 @@
+Linux Round 60: GDB Debugging Basics
+
+Purpose:
+Learn basic debugging with gdb for C programs.
+
+Program:
+debug_demo.c
+
+Compile with debug information:
+
+gcc -Wall -Wextra -g debug_demo.c -o debug_demo
+
+Important gcc flag:
+
+-g
+Add debug information for gdb.
+
+Basic gdb usage:
+
+1. Start gdb:
+   gdb ./debug_demo
+
+2. Set breakpoint:
+   break main
+   break calculate_score
+   break add
+   break multiply
+
+3. Run program:
+   run
+
+4. Show source code:
+   list
+
+5. Execute next line:
+   next
+   n
+
+6. Step into function:
+   step
+   s
+
+7. Print variables:
+   print base
+   print bonus
+   print score
+   p total
+   p final_score
+
+8. Show call stack:
+   backtrace
+   bt
+
+9. Quit gdb:
+   quit
+
+Important concepts:
+
+- breakpoint stops the program at a selected location.
+- next runs the next line without entering functions.
+- step enters function calls.
+- print shows variable values.
+- backtrace shows function call stack.
+
+Key lesson:
+gdb helps inspect program execution step by step. It is essential for C, firmware, and embedded Linux debugging.
