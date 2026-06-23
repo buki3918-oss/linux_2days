@@ -1,0 +1,83 @@
+Linux Round 63: C Array and Pointer Relationship
+
+Purpose:
+Understand the relationship between arrays and pointers in C.
+
+Important concepts:
+
+1. Array
+   A continuous block of memory storing multiple elements of the same type.
+
+2. Array name
+   In many expressions, the array name represents the address of the first element.
+
+3. arr[i]
+   Access the i-th element of the array.
+
+4. *(arr + i)
+   Pointer-style access to the i-th element.
+
+Important equivalence:
+
+arr[i] == *(arr + i)
+
+Example:
+
+int arr[5] = {10, 20, 30, 40, 50};
+
+arr[0] == *(arr + 0)
+arr[1] == *(arr + 1)
+arr[2] == *(arr + 2)
+
+Pointer arithmetic:
+
+If arr is an int array, then:
+
+arr + 1
+
+does not mean address + 1 byte.
+It means move to the next int element.
+
+Because int is usually 4 bytes:
+
+&arr[1] is usually 4 bytes after &arr[0].
+
+Important address relationship:
+
+arr == &arr[0]
+
+Both point to the first element of the array in most expressions.
+
+Using pointer to walk through array:
+
+int *p = arr;
+
+*p reads the current element.
+p++ moves to the next int element.
+
+Function parameter:
+
+void double_values(int *arr, int size)
+
+When passing an array to a function:
+
+double_values(numbers, 5);
+
+numbers becomes the address of the first element.
+The function can modify the original array.
+
+Important commands:
+
+gcc -Wall -Wextra -g array_pointer.c -o array_pointer
+./array_pointer
+
+gcc -Wall -Wextra -g pointer_walk.c -o pointer_walk
+./pointer_walk
+
+gcc -Wall -Wextra -g array_modify.c -o array_modify
+./array_modify
+
+gdb ./array_pointer
+
+Key lesson:
+Arrays and pointers are closely related in C. arr[i] and *(arr + i) access the same value. Understanding this relationship is essential for buffers, strings, memory operations, firmware, embedded Linux, and driver development.

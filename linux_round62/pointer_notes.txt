@@ -1,0 +1,94 @@
+Linux Round 62: C Pointer and Memory Address Basics
+
+Purpose:
+Learn basic C pointer concepts, memory addresses, and pass-by-pointer.
+
+Important symbols:
+
+1. &
+   Address-of operator.
+   Example:
+   &x means the memory address of x.
+
+2. *
+   Dereference operator.
+   Example:
+   *p means the value stored at the address inside p.
+
+3. int *p
+   Declares p as a pointer to int.
+
+Important ideas:
+
+1. Variable
+   Stores a value.
+
+2. Address
+   The memory location of a variable.
+
+3. Pointer
+   A variable that stores an address.
+
+Example:
+
+int x = 10;
+int *p = &x;
+
+Meaning:
+x stores 10.
+&x is the address of x.
+p stores the address of x.
+*p reads the value stored at the address inside p.
+
+Important difference:
+
+p
+The value inside pointer p, usually another variable's address.
+
+&p
+The address of pointer variable p itself.
+
+*p
+The value stored at the address inside p.
+
+Key observation:
+
+x address == p value
+p address != p value
+
+Pointer modification:
+
+*p = 20;
+
+This changes the value of x if p points to x.
+
+Pass by value:
+
+void change_value(int n) {
+    n = 999;
+}
+
+This only changes local copy n.
+The original variable outside the function is not changed.
+
+Pass by pointer:
+
+void change_by_pointer(int *p) {
+    *p = 999;
+}
+
+This changes the original variable because p stores its address.
+
+Important commands:
+
+gcc -Wall -Wextra -g pointer_basic.c -o pointer_basic
+./pointer_basic
+
+gcc -Wall -Wextra -g pass_by_value.c -o pass_by_value
+./pass_by_value
+
+gdb ./pointer_basic
+gdb ./pass_by_value
+
+Key lesson:
+Pointers store memory addresses. Dereferencing a pointer allows the program to read or modify the value at that address. This is essential for C, firmware, embedded Linux, drivers, and memory-level programming.
