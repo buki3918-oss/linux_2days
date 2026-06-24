@@ -1,0 +1,75 @@
+Linux Round 65: C Struct Basics
+
+Purpose:
+Learn basic struct usage, struct pointers, and arrays of structs in C.
+
+Important concepts:
+
+1. struct
+   A user-defined data type that groups multiple fields together.
+
+Example:
+
+struct Student {
+    int id;
+    char name[20];
+    int score;
+};
+
+2. Member access with dot
+
+struct Student s1;
+s1.id = 1;
+s1.score = 90;
+
+Use . when accessing members from a struct variable.
+
+3. Struct pointer
+
+struct Student *s;
+
+A struct pointer stores the address of a struct variable.
+
+4. Member access with arrow
+
+s->score
+
+Use -> when accessing members from a struct pointer.
+
+Equivalent form:
+
+s->score == (*s).score
+
+5. Passing struct by pointer
+
+void update_score(struct Student *s, int new_score) {
+    s->score = new_score;
+}
+
+This can modify the original struct.
+
+6. Array of structs
+
+struct Student students[3];
+
+Each element is a struct Student:
+
+students[0]
+students[1]
+students[2]
+
+Important commands:
+
+gcc -Wall -Wextra -g struct_basic.c -o struct_basic
+./struct_basic
+
+gcc -Wall -Wextra -g struct_pointer.c -o struct_pointer
+./struct_pointer
+
+gcc -Wall -Wextra -g struct_array.c -o struct_array
+./struct_array
+
+gdb ./struct_pointer
+
+Key lesson:
+Structs are used to group related data. Struct pointers allow functions to modify the original struct. Arrays of structs are useful for managing multiple records. This is essential for C projects, firmware data structures, embedded Linux drivers, and system programming.

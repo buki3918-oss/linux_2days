@@ -1,0 +1,89 @@
+Linux Round 64: C String and Char Pointer Basics
+
+Purpose:
+Learn how C strings, char arrays, char pointers, and null terminators work.
+
+Important concepts:
+
+1. C string
+   A sequence of characters ending with '\0'.
+
+2. Null terminator
+   '\0' marks the end of a C string.
+   Its ASCII value is 0.
+
+3. char array
+   Example:
+   char name[] = "Sunny";
+
+   This creates a modifiable character array:
+   S u n n y \0
+
+4. char pointer
+   Example:
+   char *name = "Yichieh";
+
+   This pointer stores the address of a string literal.
+
+5. strlen
+   Counts string length, not including '\0'.
+
+6. sizeof char array
+   Counts the full array size, including '\0'.
+
+7. sizeof char pointer
+   Counts pointer size, not string length.
+   On 64-bit Linux, it is usually 8 bytes.
+
+Important examples:
+
+char name1[] = "Sunny";
+strlen(name1) = 5
+sizeof(name1) = 6
+
+char *name2 = "Yichieh";
+strlen(name2) = 7
+sizeof(name2) is usually 8 on 64-bit Linux
+
+Pointer walking:
+
+char text[] = "ABC";
+char *p = text;
+
+while (*p != '\0') {
+    p++;
+}
+
+Because char is 1 byte, p++ moves one byte each time.
+
+Modifiable string:
+
+char name[] = "Sunny";
+name[0] = 'F';
+
+This is allowed because name is a char array.
+
+String literal caution:
+
+char *name = "Sunny";
+
+Do not modify string literals directly.
+
+Important commands:
+
+gcc -Wall -Wextra -g string_basic.c -o string_basic
+./string_basic
+
+gcc -Wall -Wextra -g string_memory.c -o string_memory
+./string_memory
+
+gcc -Wall -Wextra -g char_pointer_walk.c -o char_pointer_walk
+./char_pointer_walk
+
+gcc -Wall -Wextra -g string_modify.c -o string_modify
+./string_modify
+
+gdb ./string_basic
+
+Key lesson:
+C strings are char arrays ending with '\0'. Understanding char arrays, char pointers, strlen, sizeof, and null terminators is essential for buffers, file I/O, embedded Linux, drivers, and low-level C programming.
