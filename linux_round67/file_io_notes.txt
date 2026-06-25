@@ -1,0 +1,100 @@
+Linux Round 67: C File I/O Basics
+
+Purpose:
+Learn basic C file input and output using fopen, fprintf, fgets, and fclose.
+
+Important concepts:
+
+1. FILE *
+   A pointer representing an opened file stream.
+
+2. fopen
+
+FILE *fp = fopen("output.txt", "w");
+
+This opens a file.
+
+Common modes:
+
+w
+Write mode. Creates a new file or overwrites an existing file.
+
+a
+Append mode. Writes to the end of an existing file.
+
+r
+Read mode. Opens an existing file for reading.
+
+3. NULL check
+
+if (fp == NULL) {
+    printf("Failed to open file\n");
+    return 1;
+}
+
+fopen can fail. Always check whether fp is NULL.
+
+4. fprintf
+
+fprintf(fp, "score = %d\n", 95);
+
+Writes formatted text to a file.
+
+5. fgets
+
+fgets(line, sizeof(line), fp)
+
+Reads one line from a file into a char buffer.
+
+6. fclose
+
+fclose(fp);
+
+Closes the file stream.
+
+Important rule:
+
+If fopen succeeds, remember to fclose.
+
+File modes:
+
+w
+Overwrite file.
+
+a
+Append to file.
+
+r
+Read file.
+
+Buffer:
+
+char line[100];
+
+This creates a buffer for reading one line.
+
+Important commands:
+
+gcc -Wall -Wextra -g file_write.c -o file_write
+./file_write
+cat output.txt
+
+gcc -Wall -Wextra -g file_append.c -o file_append
+./file_append
+cat output.txt
+
+gcc -Wall -Wextra -g file_read.c -o file_read
+./file_read
+
+gcc -Wall -Wextra -g student_report.c -o student_report
+./student_report
+cat student_report.txt
+
+gcc -Wall -Wextra -g read_missing_file.c -o read_missing_file
+./read_missing_file
+echo $?
+
+gdb ./file_read
+
+Key lesson:
+C file I/O uses FILE pointers. fopen opens files, fprintf writes files, fgets reads files, and fclose closes files. File I/O is essential for logs, reports, CSV files, configuration files, system tools, and data processing.

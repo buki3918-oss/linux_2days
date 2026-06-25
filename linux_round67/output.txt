@@ -1,0 +1,5 @@
+Linux Round 67
+C file writing practice
+score = 95
+Append line 1
+Append line 2

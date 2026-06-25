@@ -1,0 +1,103 @@
+Linux Round 66: C malloc/free Dynamic Memory Basics
+
+Purpose:
+Learn basic dynamic memory allocation in C using malloc and free.
+
+Important concepts:
+
+1. Stack
+   Used for local variables with automatic lifetime.
+
+2. Heap
+   Used for dynamically allocated memory.
+
+3. malloc
+   Allocates memory from the heap.
+
+Example:
+
+int *p = malloc(sizeof(int));
+
+This asks for enough heap memory to store one int.
+
+4. NULL check
+
+if (p == NULL) {
+    printf("malloc failed\n");
+    return 1;
+}
+
+malloc can fail. Always check whether the returned pointer is NULL.
+
+5. Dereference malloc memory
+
+*p = 100;
+
+This writes 100 into the memory pointed to by p.
+
+6. free
+
+free(p);
+
+Memory allocated by malloc should be released using free.
+
+Important rule:
+
+malloc and free should usually appear as a pair.
+
+Dynamic array:
+
+int *arr = malloc(size * sizeof(int));
+
+This creates an array-like memory block on the heap.
+
+Access:
+
+arr[i]
+*(arr + i)
+
+Important difference:
+
+int fixed_arr[5];
+sizeof(fixed_arr) is usually 20 bytes.
+
+int *arr = malloc(5 * sizeof(int));
+sizeof(arr) is usually 8 bytes on 64-bit Linux.
+
+Because arr is a pointer, not a real array variable.
+
+Memory leak:
+
+If malloc memory is not freed, the program leaks memory.
+
+Bad:
+
+int *data = malloc(3 * sizeof(int));
+/* missing free(data); */
+
+Good:
+
+int *data = malloc(3 * sizeof(int));
+free(data);
+
+Important commands:
+
+gcc -Wall -Wextra -g malloc_basic.c -o malloc_basic
+./malloc_basic
+
+gcc -Wall -Wextra -g dynamic_array.c -o dynamic_array
+./dynamic_array
+
+gcc -Wall -Wextra -g malloc_user_input.c -o malloc_user_input
+./malloc_user_input
+
+gcc -Wall -Wextra -g memory_leak_demo.c -o memory_leak_demo
+./memory_leak_demo
+
+gcc -Wall -Wextra -g no_leak_demo.c -o no_leak_demo
+./no_leak_demo
+
+gdb ./dynamic_array
+
+Key lesson:
+malloc allocates memory on the heap. free releases it. Forgetting free can cause memory leaks. Dynamic memory is essential for data structures, buffers, file processing, embedded Linux, and system programming.
