@@ -1,0 +1,2 @@
+This file was created by file_arg_writer.
+Output filename: report.txt

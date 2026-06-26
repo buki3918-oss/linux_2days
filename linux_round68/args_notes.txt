@@ -1,0 +1,104 @@
+Linux Round 68: C Command-Line Arguments Basics
+
+Purpose:
+Learn how to use command-line arguments in C programs.
+
+Important main function form:
+
+int main(int argc, char *argv[])
+
+Important concepts:
+
+1. argc
+   Argument count.
+   It stores how many command-line arguments were passed.
+
+2. argv
+   Argument vector.
+   It stores command-line arguments as strings.
+
+Example command:
+
+./program Sunny 95
+
+Meaning:
+
+argc = 3
+argv[0] = ./program
+argv[1] = Sunny
+argv[2] = 95
+
+Important rule:
+
+argv[0] is usually the program name.
+argv[1] is the first user-provided argument.
+argv[2] is the second user-provided argument.
+
+Argument check:
+
+if (argc != 2) {
+    printf("Usage: %s <name>\n", argv[0]);
+    return 1;
+}
+
+This prevents accessing missing argv elements.
+
+Exit status:
+
+return 0
+Program finished successfully.
+
+return 1
+Program ended with an error or wrong usage.
+
+echo $?
+Shows the exit status of the previous command.
+
+String to integer:
+
+atoi(argv[2])
+
+Converts a string argument into an int.
+
+Header required:
+
+#include <stdlib.h>
+
+File argument:
+
+FILE *fp = fopen(argv[1], "w");
+
+This allows the user to specify an output filename from the command line.
+
+GDB with arguments:
+
+gdb --args ./score_cli Sunny 95
+
+Then inside gdb:
+
+break main
+run
+print argc
+print argv[0]
+print argv[1]
+print argv[2]
+
+Important commands:
+
+gcc -Wall -Wextra -g args_basic.c -o args_basic
+./args_basic Sunny 95
+
+gcc -Wall -Wextra -g greet_user.c -o greet_user
+./greet_user Sunny
+
+gcc -Wall -Wextra -g score_cli.c -o score_cli
+./score_cli Sunny 95
+
+gcc -Wall -Wextra -g file_arg_writer.c -o file_arg_writer
+./file_arg_writer report.txt
+
+gcc -Wall -Wextra -g simple_calculator.c -o simple_calculator
+./simple_calculator 10 20
+
+Key lesson:
+Command-line arguments make C programs more flexible. They allow users to pass names, numbers, filenames, and options when running a program. This is the foundation of CLI tools and system utilities.

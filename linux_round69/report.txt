@@ -1,0 +1,9 @@
+Student Report
+==============
+id = 1, name = Sunny, score = 90, result = PASS
+id = 2, name = Yichieh, score = 95, result = PASS
+id = 3, name = Alex, score = 80, result = PASS
+id = 4, name = Bob, score = 55, result = FAIL
+id = 5, name = Cathy, score = 88, result = PASS
+
+Total students = 5

@@ -1,0 +1,337 @@
+Linux Round 69: Student CLI Report Tool
+
+Purpose:
+Build a small C CLI project that combines command-line arguments, struct, malloc, dynamic array expansion, file I/O, and Makefile.
+
+Program usage:
+
+./student_report_cli <input_file> <output_file>
+
+Example:
+
+./student_report_cli students.txt report.txt
+
+Input file format:
+
+id name score
+
+Example:
+
+1 Sunny 90
+2 Yichieh 95
+3 Alex 80
+4 Bob 55
+5 Cathy 88
+
+Output file example:
+
+Student Report
+==============
+id = 1, name = Sunny, score = 90, result = PASS
+id = 2, name = Yichieh, score = 95, result = PASS
+id = 3, name = Alex, score = 80, result = PASS
+id = 4, name = Bob, score = 55, result = FAIL
+id = 5, name = Cathy, score = 88, result = PASS
+
+Total students = 5
+
+Main concepts:
+
+1. Command-line arguments
+
+int main(int argc, char *argv[])
+
+argc checks how many command-line arguments were passed.
+argv[0] is the program name.
+argv[1] is the input filename.
+argv[2] is the output filename.
+
+Example:
+
+./student_report_cli students.txt report.txt
+
+Meaning:
+
+argc = 3
+argv[0] = ./student_report_cli
+argv[1] = students.txt
+argv[2] = report.txt
+
+The program checks:
+
+if (argc != 3) {
+    printf("Usage: %s <input_file> <output_file>\n", argv[0]);
+    return 1;
+}
+
+This prevents accessing missing argv elements.
+
+2. Struct
+
+struct Student {
+    int id;
+    char name[50];
+    int score;
+};
+
+This groups student data into one record.
+
+Each student has:
+
+id
+name
+score
+
+3. File input
+
+FILE *in = fopen(input_file, "r");
+
+The program opens the input file in read mode.
+
+If fopen fails:
+
+if (in == NULL) {
+    printf("Failed to open input file: %s\n", input_file);
+    return 1;
+}
+
+This is important because input files may not exist.
+
+4. Reading student records
+
+while (fscanf(in, "%d %49s %d",
+              &students[count].id,
+              students[count].name,
+              &students[count].score) == 3) {
+    ...
+}
+
+fscanf reads formatted data from the input file.
+
+%d reads an integer.
+%49s reads a string with a maximum width of 49 characters.
+%d reads another integer.
+
+The format matches:
+
+id name score
+
+Example:
+
+1 Sunny 90
+
+5. Dynamic memory
+
+int capacity = 4;
+int count = 0;
+
+struct Student *students = malloc(capacity * sizeof(struct Student));
+
+The program first allocates space for 4 students.
+
+capacity means how many records can currently be stored.
+count means how many records have actually been read.
+
+6. Dynamic array expansion
+
+When count reaches capacity:
+
+if (count == capacity) {
+    capacity = capacity * 2;
+
+    struct Student *new_students =
+        malloc(capacity * sizeof(struct Student));
+
+    ...
+}
+
+The program creates a larger memory block.
+
+Then it copies old data:
+
+for (int i = 0; i < count; i++) {
+    new_students[i] = students[i];
+}
+
+Then it releases the old memory:
+
+free(students);
+
+Then it updates the pointer:
+
+students = new_students;
+
+This is a simple manual version of dynamic array resizing.
+
+7. Memory management
+
+malloc allocates heap memory.
+
+free releases heap memory.
+
+Important rule:
+
+Every successful malloc should eventually have a matching free.
+
+In this project:
+
+students = malloc(...);
+
+At the end:
+
+free(students);
+
+If malloc fails, the program prints an error and exits safely.
+
+8. File output
+
+FILE *out = fopen(output_file, "w");
+
+The program opens the output file in write mode.
+
+If the file does not exist, it is created.
+If the file already exists, it is overwritten.
+
+9. Report header
+
+void write_report_header(FILE *out) {
+    fprintf(out, "Student Report\n");
+    fprintf(out, "==============\n");
+}
+
+This function writes the report title.
+
+10. Writing one student
+
+void write_student(FILE *out, struct Student *s) {
+    const char *result;
+
+    if (s->score >= 60) {
+        result = "PASS";
+    } else {
+        result = "FAIL";
+    }
+
+    fprintf(out, "id = %d, name = %s, score = %d, result = %s\n",
+            s->id, s->name, s->score, result);
+}
+
+This function writes one student record.
+
+It also calculates PASS or FAIL.
+
+score >= 60 means PASS.
+score < 60 means FAIL.
+
+11. Makefile
+
+The Makefile contains:
+
+CC = gcc
+CFLAGS = -Wall -Wextra -g
+TARGET = student_report_cli
+
+Targets:
+
+make
+Builds the program.
+
+make run
+Runs the program with students.txt and report.txt.
+
+make clean
+Removes the executable and report.txt.
+
+Important Makefile rule:
+
+Command lines under targets must start with a Tab, not spaces.
+
+12. GDB with command-line arguments
+
+Use:
+
+gdb --args ./student_report_cli students.txt report.txt
+
+Inside gdb:
+
+break main
+run
+print argc
+print argv[1]
+print argv[2]
+print input_file
+print output_file
+print capacity
+print count
+print students
+
+Important observation:
+
+Before these lines execute:
+
+int capacity = 4;
+int count = 0;
+struct Student *students = malloc(...);
+
+capacity, count, and students may not yet contain meaningful values.
+
+After these lines execute:
+
+capacity = 4
+count = 0
+students = heap address returned by malloc
+
+13. Common GDB issue
+
+If a command is typed like this:
+
+print count\
+print count
+
+GDB may treat it as one broken expression.
+
+Correct way:
+
+print count
+
+Type GDB commands one line at a time.
+
+14. Clock skew warning
+
+Sometimes make shows:
+
+make: Warning: File 'Makefile' has modification time in the future
+make: warning: Clock skew detected.
+
+This is usually caused by WSL or Windows time synchronization.
+
+If make still builds and runs successfully, the project is okay.
+
+A possible fix is:
+
+touch Makefile student_report_cli.c
+make clean
+make
+make run
+
+Important commands:
+
+gcc -Wall -Wextra -g student_report_cli.c -o student_report_cli
+
+./student_report_cli
+echo $?
+
+./student_report_cli students.txt report.txt
+echo $?
+
+cat report.txt
+
+make clean
+make
+make run
+cat report.txt
+
+gdb --args ./student_report_cli students.txt report.txt
+
+Key lesson:
+This project combines command-line arguments, struct, malloc, dynamic array expansion, file input, file output, and Makefile into one small C CLI tool. This is closer to a real system utility than the previous single-concept exercises.

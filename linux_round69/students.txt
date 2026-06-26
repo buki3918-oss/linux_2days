@@ -1,0 +1,5 @@
+1 Sunny 90
+2 Yichieh 95
+3 Alex 80
+4 Bob 55
+5 Cathy 88
