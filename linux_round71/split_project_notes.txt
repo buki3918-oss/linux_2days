@@ -1,0 +1,130 @@
+Linux Round 71: C Header/Source Split Project
+
+Purpose:
+Learn how to split a C project into header files, source files, main program, and Makefile.
+
+Project files:
+
+student.h
+student.c
+main.c
+Makefile
+students.txt
+report.txt
+
+Important concepts:
+
+1. Header file
+
+student.h contains:
+
+struct definition
+function declarations
+include guard
+
+Example:
+
+#ifndef STUDENT_H
+#define STUDENT_H
+
+...
+#endif
+
+This prevents duplicate inclusion.
+
+2. Source file
+
+student.c contains function implementations.
+
+Examples:
+
+get_result
+write_report_header
+write_student
+print_student
+
+It includes:
+
+#include "student.h"
+
+3. Main file
+
+main.c contains the main program flow:
+
+argc / argv
+fopen input file
+malloc students array
+realloc dynamic expansion
+fscanf student records
+write report file
+free memory
+
+4. Function declaration vs implementation
+
+Declaration in student.h:
+
+void write_student(FILE *out, struct Student *s);
+
+Implementation in student.c:
+
+void write_student(FILE *out, struct Student *s) {
+    ...
+}
+
+5. Multiple source compilation
+
+Manual compile:
+
+gcc -Wall -Wextra -g main.c student.c -o student_report_app
+
+6. Object files
+
+Makefile builds:
+
+main.o
+student.o
+
+Then links:
+
+gcc -Wall -Wextra -g main.o student.o -o student_report_app
+
+7. Makefile dependencies
+
+main.o depends on:
+
+main.c student.h
+
+student.o depends on:
+
+student.c student.h
+
+If student.h changes, both object files may need recompilation.
+
+If student.c changes, only student.o needs recompilation, then linking.
+
+8. GDB multi-file debugging
+
+gdb --args ./student_report_app students.txt report.txt
+
+Useful breakpoints:
+
+break main
+break write_student
+
+This allows debugging across main.c and student.c.
+
+Important commands:
+
+gcc -Wall -Wextra -g main.c student.c -o student_report_app
+./student_report_app students.txt report.txt
+cat report.txt
+
+make clean
+make
+make run
+cat report.txt
+
+gdb --args ./student_report_app students.txt report.txt
+
+Key lesson:
+Real C projects are usually split into .h and .c files. Header files expose data structures and function declarations. Source files implement behavior. Makefile manages compilation dependencies and linking.

@@ -1,0 +1,95 @@
+Linux Round 70: C realloc and Dynamic Array Refactoring
+
+Purpose:
+Learn how to use realloc to resize heap memory and refactor manual dynamic array expansion.
+
+Important concepts:
+
+1. malloc
+   Allocates heap memory.
+
+2. realloc
+   Resizes previously allocated heap memory.
+
+Example:
+
+int *new_arr = realloc(arr, new_size * sizeof(int));
+
+3. Safe realloc pattern
+
+Do not write:
+
+arr = realloc(arr, new_size * sizeof(int));
+
+Safer:
+
+int *new_arr = realloc(arr, new_size * sizeof(int));
+
+if (new_arr == NULL) {
+    free(arr);
+    return 1;
+}
+
+arr = new_arr;
+
+Reason:
+If realloc fails, it returns NULL.
+If you assign NULL directly to arr, the old memory address is lost.
+
+4. realloc may move memory
+
+After realloc:
+
+The address may stay the same.
+The address may change.
+
+If the block is moved, old data is copied to the new block automatically.
+
+5. Dynamic array capacity
+
+capacity means allocated space.
+count means used records.
+
+Example:
+
+capacity = 2
+count = 0
+
+When count == capacity, expand:
+
+new_capacity = capacity * 2
+
+6. Student dynamic array
+
+struct Student *students = malloc(capacity * sizeof(struct Student));
+
+When full:
+
+struct Student *new_students =
+    realloc(students, new_capacity * sizeof(struct Student));
+
+students = new_students;
+capacity = new_capacity;
+
+7. File + realloc integration
+
+The program reads students.txt using fscanf.
+When the array is full, it expands the heap memory using realloc.
+Then it writes a report file.
+
+Important commands:
+
+gcc -Wall -Wextra -g realloc_basic.c -o realloc_basic
+./realloc_basic
+
+gcc -Wall -Wextra -g realloc_students.c -o realloc_students
+./realloc_students
+
+gcc -Wall -Wextra -g realloc_cli_report.c -o realloc_cli_report
+./realloc_cli_report students.txt report.txt
+cat report.txt
+
+gdb --args ./realloc_students
+
+Key lesson:
+realloc is used to resize heap memory. It simplifies dynamic array expansion compared with manual malloc-copy-free. However, realloc must be used carefully to avoid losing the original pointer when allocation fails.
