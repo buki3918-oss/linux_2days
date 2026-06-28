@@ -1,0 +1,92 @@
+Linux Round 73: C Project Cleanup and .gitignore Improvement
+
+Purpose:
+Learn how to clean Git-tracked build artifacts and improve .gitignore for C projects.
+
+Important concepts:
+
+1. Source files should be tracked
+
+Examples:
+
+.c
+.h
+Makefile
+README
+notes.txt
+input sample files
+
+2. Build artifacts usually should not be tracked
+
+Examples:
+
+.o files
+a.out
+temporary files
+log files
+
+3. .gitignore
+
+.gitignore tells Git which untracked files should be ignored.
+
+Example:
+
+*.o
+
+This ignores object files such as:
+
+main.o
+student.o
+
+4. Important limitation
+
+.gitignore only affects untracked files.
+
+If a file was already committed before, Git will keep tracking it.
+
+5. git rm --cached
+
+Use:
+
+git rm --cached file.o
+
+This removes the file from Git tracking but keeps the file in the local working directory.
+
+6. Why remove .o files from Git?
+
+.o files are generated from source code.
+They are machine/build artifacts.
+They can be rebuilt using Makefile.
+They make the repository less clean.
+
+7. Round 73 cleanup decision
+
+In this round, we only remove tracked .o files from Git.
+
+We keep source files:
+
+main.c
+student.c
+student.h
+Makefile
+
+We keep notes and sample input/output files.
+
+8. Commands used
+
+find . -type f -name "*.o" | sort
+find . -type f -executable | sort | head -50
+
+cat .gitignore
+cp .gitignore .gitignore.backup_round73
+
+cat >> .gitignore
+
+git ls-files "*.o"
+git rm --cached linux_round71/main.o linux_round71/student.o
+
+ls -l linux_round71/*.o
+git status
+
+Key lesson:
+A clean GitHub repository should track source code and documentation, not unnecessary generated build artifacts. .gitignore prevents future build artifacts from being added, while git rm --cached removes files that were already tracked.

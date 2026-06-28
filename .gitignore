@@ -2,3 +2,11 @@ venv/
 __pycache__/
 *.pyc
 .env
+
+# C build artifacts
+*.o
+*.out
+
+# Temporary files
+*.tmp
+*.log

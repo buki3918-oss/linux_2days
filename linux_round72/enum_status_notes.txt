@@ -1,0 +1,140 @@
+Linux Round 72: C enum and Status Code Design
+
+Purpose:
+Learn how to use enum to make status codes and program results more readable.
+
+Important concepts:
+
+1. enum
+
+enum defines named integer constants.
+
+Example:
+
+enum Result {
+    PASS,
+    FAIL
+};
+
+By default:
+
+PASS = 0
+FAIL = 1
+
+2. Explicit enum values
+
+enum StatusCode {
+    STATUS_OK = 0,
+    STATUS_USAGE_ERROR = 1,
+    STATUS_FILE_ERROR = 2,
+    STATUS_MEMORY_ERROR = 3
+};
+
+This makes return codes readable.
+
+3. Why enum is useful
+
+Instead of writing:
+
+return 2;
+
+write:
+
+return STATUS_FILE_ERROR;
+
+This is easier to understand.
+
+4. status_to_string
+
+const char *status_to_string(enum StatusCode status)
+
+This converts enum status codes into readable strings.
+
+Example:
+
+STATUS_FILE_ERROR -> "FILE_ERROR"
+
+5. result_to_string
+
+const char *result_to_string(enum Result result)
+
+This converts PASS / FAIL enum values into readable strings.
+
+6. switch with enum
+
+switch is commonly used with enum:
+
+switch (status) {
+    case STATUS_OK:
+        return "OK";
+    case STATUS_FILE_ERROR:
+        return "FILE_ERROR";
+    default:
+        return "UNKNOWN_STATUS";
+}
+
+7. Exit status
+
+return STATUS_OK;
+echo $? shows 0
+
+return STATUS_USAGE_ERROR;
+echo $? shows 1
+
+return STATUS_INPUT_FILE_ERROR;
+echo $? shows 2
+
+8. Student status report tool
+
+The program uses:
+
+STATUS_OK
+STATUS_USAGE_ERROR
+STATUS_INPUT_FILE_ERROR
+STATUS_OUTPUT_FILE_ERROR
+STATUS_MEMORY_ERROR
+
+It also uses:
+
+RESULT_PASS
+RESULT_FAIL
+
+9. Good error handling style
+
+Check argc.
+Check fopen.
+Check malloc.
+Check realloc.
+Return meaningful status codes.
+Print readable status messages.
+
+Important commands:
+
+gcc -Wall -Wextra -g enum_basic.c -o enum_basic
+./enum_basic
+
+gcc -Wall -Wextra -g enum_explicit.c -o enum_explicit
+./enum_explicit
+echo $?
+
+gcc -Wall -Wextra -g status_cli.c -o status_cli
+./status_cli
+echo $?
+./status_cli missing.txt
+echo $?
+./status_cli input.txt
+echo $?
+
+gcc -Wall -Wextra -g student_status_report.c -o student_status_report
+./student_status_report
+echo $?
+./student_status_report missing.txt report.txt
+echo $?
+./student_status_report students.txt report.txt
+echo $?
+cat report.txt
+
+gdb --args ./student_status_report students.txt report.txt
+
+Key lesson:
+enum makes C programs more readable by replacing unclear numbers with meaningful names. It is useful for status codes, program results, error handling, state machines, and system programming.
