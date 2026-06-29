@@ -1,0 +1,137 @@
+Linux Round 74: Linux Process and Signal Basics
+
+Purpose:
+Learn Linux process basics, PID, background jobs, ps, pgrep, kill, and common signals.
+
+Important concepts:
+
+1. Process
+
+A process is a running program.
+
+Examples:
+
+bash
+sleep
+python
+gcc
+system service
+
+2. PID
+
+PID means Process ID.
+
+Each process has a unique PID.
+
+3. Current shell PID
+
+echo $$
+
+$$ means the PID of the current shell.
+
+4. ps
+
+ps shows process information.
+
+Examples:
+
+ps -p $$
+ps -f -p $$
+ps aux
+
+5. Background process
+
+sleep 300 &
+
+The & symbol runs a command in the background.
+
+6. jobs
+
+jobs shows background jobs started by the current shell.
+
+7. pgrep
+
+pgrep sleep
+
+Finds the PID of processes matching a name.
+
+pgrep -a sleep
+
+Shows PID and command.
+
+8. kill
+
+kill PID
+
+Sends SIGTERM by default.
+
+9. SIGTERM
+
+SIGTERM asks a process to terminate gracefully.
+
+It can be handled by the program.
+
+10. SIGKILL
+
+kill -9 PID
+
+Sends SIGKILL.
+
+SIGKILL forcefully kills a process.
+
+It cannot be handled or ignored.
+
+11. SIGINT
+
+Ctrl + C sends SIGINT.
+
+SIGINT usually interrupts the foreground program.
+
+12. Redirect output
+
+./long_running.sh > long_running.log 2>&1 &
+
+Meaning:
+
+> long_running.log
+Redirect standard output to a file.
+
+2>&1
+Redirect standard error to the same place as standard output.
+
+&
+Run in the background.
+
+13. Process report script
+
+process_report.sh uses:
+
+ps aux --sort=-%cpu
+ps aux --sort=-%mem
+pgrep -a sleep
+
+Important commands:
+
+echo $$
+ps -p $$
+ps -f -p $$
+
+sleep 300 &
+jobs
+pgrep sleep
+kill PID
+kill -9 PID
+
+chmod +x long_running.sh
+./long_running.sh
+Ctrl + C
+
+./long_running.sh > long_running.log 2>&1 &
+tail long_running.log
+kill $(pgrep -f long_running.sh | head -1)
+
+chmod +x process_report.sh
+./process_report.sh
+
+Key lesson:
+Linux process and signal concepts are essential for system programming and embedded Linux. Firmware-related Linux tools often need to monitor processes, stop services, handle signals, collect logs, and interact with long-running programs.
