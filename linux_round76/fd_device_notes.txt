@@ -1,0 +1,143 @@
+Linux Round 76: File Descriptor and /dev/null / /dev/zero
+
+Purpose:
+Learn file descriptors, stdout/stderr redirection, and special Linux device files.
+
+Important concepts:
+
+1. File descriptor
+
+A file descriptor is an integer used by a process to refer to an opened file or device.
+
+Common file descriptors:
+
+0 = stdin
+1 = stdout
+2 = stderr
+
+2. /proc/$$/fd
+
+/proc/$$/fd shows file descriptors opened by the current shell.
+
+Examples:
+
+ls -l /proc/$$/fd
+readlink /proc/$$/fd/0
+readlink /proc/$$/fd/1
+readlink /proc/$$/fd/2
+
+3. stdout and stderr
+
+stdout is fd 1.
+stderr is fd 2.
+
+echo "message"
+writes to stdout.
+
+echo "error" >&2
+writes to stderr.
+
+4. Redirect stdout
+
+./program > stdout.txt
+
+This redirects stdout only.
+
+5. Redirect stderr
+
+./program 2> stderr.txt
+
+This redirects stderr only.
+
+6. Redirect both stdout and stderr
+
+./program > both.txt 2>&1
+
+This redirects stdout to both.txt and then redirects stderr to the same place as stdout.
+
+7. /dev/null
+
+/dev/null discards everything written to it.
+
+Reading from /dev/null immediately returns EOF.
+
+Examples:
+
+echo "hello" > /dev/null
+./program > /dev/null 2>&1
+
+8. /dev/zero
+
+/dev/zero produces infinite zero bytes.
+
+Examples:
+
+head -c 16 /dev/zero | xxd
+head -c 1024 /dev/zero > zero_1kb.bin
+
+9. C open/write/close with /dev/null
+
+open("/dev/null", O_WRONLY)
+
+write(fd, message, size)
+
+The write succeeds, but the data is discarded.
+
+10. C open/read/close with /dev/zero
+
+open("/dev/zero", O_RDONLY)
+
+read(fd, buffer, size)
+
+The read returns zero bytes.
+
+11. strace
+
+strace can show system calls:
+
+strace -e openat,read,write,close ./null_write
+strace -e openat,read,write,close ./zero_read
+
+12. Why this matters for embedded Linux
+
+Many hardware-related interfaces appear as device files.
+
+Examples:
+
+/dev/tty
+/dev/ttyUSB0
+/dev/i2c-1
+/dev/spidev0.0
+
+The basic pattern is similar:
+
+open device
+read or write
+close device
+
+Important commands:
+
+ls -l /proc/$$/fd
+readlink /proc/$$/fd/0
+readlink /proc/$$/fd/1
+readlink /proc/$$/fd/2
+
+./stdout_stderr_demo.sh > stdout.txt
+./stdout_stderr_demo.sh 2> stderr.txt
+./stdout_stderr_demo.sh > both.txt 2>&1
+
+echo "hello null" > /dev/null
+cat /dev/null
+
+head -c 16 /dev/zero | xxd
+head -c 1024 /dev/zero > zero_1kb.bin
+xxd zero_1kb.bin | head
+
+gcc -Wall -Wextra -g null_write.c -o null_write
+./null_write
+
+gcc -Wall -Wextra -g zero_read.c -o zero_read
+./zero_read
+
+Key lesson:
+Linux treats many resources as files. File descriptors provide a common way to access files, terminals, and device nodes. Understanding /dev/null and /dev/zero prepares you for UART, I2C, SPI, and driver device files.

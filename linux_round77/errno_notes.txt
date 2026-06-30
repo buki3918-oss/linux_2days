@@ -1,0 +1,161 @@
+Linux Round 77: C perror and errno Error Handling
+
+Purpose:
+Learn how to handle Linux system call errors using perror, errno, and strerror.
+
+Important concepts:
+
+1. System call failure
+
+Many Linux system calls return -1 when they fail.
+
+Examples:
+
+open
+read
+write
+close
+
+2. errno
+
+errno is a global error number set by the system/library when a function fails.
+
+Include:
+
+#include <errno.h>
+
+3. perror
+
+perror("open")
+
+Prints:
+
+open: No such file or directory
+
+It prints the prefix plus the current errno message.
+
+4. strerror
+
+strerror(errno)
+
+Converts errno into a readable string.
+
+Include:
+
+#include <string.h>
+
+5. Common errno values
+
+ENOENT: No such file or directory
+EACCES: Permission denied
+EBADF: Bad file descriptor
+EINVAL: Invalid argument
+
+6. Better error handling style
+
+Instead of:
+
+printf("open failed\n");
+
+Use:
+
+perror("open");
+
+or:
+
+printf("errno = %d, message = %s\n", errno, strerror(errno));
+
+7. Bad file descriptor
+
+write(9999, message, 6)
+
+This fails because 9999 is not a valid fd.
+
+Expected error:
+
+EBADF
+Bad file descriptor
+
+8. Permission error
+
+chmod 000 secret.txt
+
+open("secret.txt", O_RDONLY)
+
+Usually causes:
+
+EACCES
+Permission denied
+
+In some WSL environments, permission behavior may differ.
+
+9. perror with device files
+
+open("/dev/null", O_WRONLY)
+write(fd, message, size)
+close(fd)
+
+Check errors after each system call.
+
+10. copy_perror.c
+
+This is a stronger version of copy_syscall.c.
+
+It checks:
+
+argc
+open source
+open destination
+read
+write
+close source
+close destination
+
+11. strace error observation
+
+strace can show kernel-level errors:
+
+openat(AT_FDCWD, "missing.txt", O_RDONLY) = -1 ENOENT (No such file or directory)
+
+This means the system call failed and errno becomes ENOENT.
+
+Important commands:
+
+gcc -Wall -Wextra -g perror_open.c -o perror_open
+./perror_open
+echo $?
+
+gcc -Wall -Wextra -g errno_demo.c -o errno_demo
+./errno_demo
+echo $?
+
+gcc -Wall -Wextra -g errno_names.c -o errno_names
+./errno_names
+
+gcc -Wall -Wextra -g bad_fd.c -o bad_fd
+./bad_fd
+echo $?
+
+chmod 000 secret.txt
+gcc -Wall -Wextra -g permission_demo.c -o permission_demo
+./permission_demo
+echo $?
+chmod 644 secret.txt
+
+gcc -Wall -Wextra -g null_write_perror.c -o null_write_perror
+./null_write_perror
+echo $?
+
+gcc -Wall -Wextra -g copy_perror.c -o copy_perror
+./copy_perror
+echo $?
+./copy_perror missing.txt copied.txt
+echo $?
+./copy_perror input.txt output.txt
+echo $?
+cat output.txt
+
+strace -e openat,read,write,close ./copy_perror missing.txt copied.txt
+
+Key lesson:
+Good Linux C programs should not only detect failure but also report the real reason. perror, errno, and strerror are essential tools for debugging system calls and embedded Linux device-file operations.
