@@ -1,0 +1,160 @@
+Linux Round 79: C stat and File Metadata
+
+Purpose:
+Learn how to inspect file metadata in C using stat().
+
+Important concepts:
+
+1. stat()
+
+stat(path, &file_info)
+
+Reads file metadata into struct stat.
+
+Include:
+
+#include <sys/stat.h>
+#include <unistd.h>
+
+2. struct stat
+
+Important fields:
+
+st_size: file size in bytes
+st_uid: owner user ID
+st_gid: group ID
+st_mode: file type and permission bits
+st_atime: last access time
+st_mtime: last modification time
+st_ctime: last status change time
+
+3. st_mode
+
+st_mode contains both:
+
+file type
+permission bits
+
+Use:
+
+file_info.st_mode & 0777
+
+to extract permission bits only.
+
+4. Permission macros
+
+S_IRUSR: owner read
+S_IWUSR: owner write
+S_IXUSR: owner execute
+
+S_IRGRP: group read
+S_IWGRP: group write
+S_IXGRP: group execute
+
+S_IROTH: others read
+S_IWOTH: others write
+S_IXOTH: others execute
+
+5. File type macros
+
+S_ISREG(mode): regular file
+S_ISDIR(mode): directory
+S_ISCHR(mode): character device
+S_ISBLK(mode): block device
+S_ISFIFO(mode): FIFO / pipe
+S_ISLNK(mode): symbolic link
+S_ISSOCK(mode): socket
+
+6. Device files
+
+/dev/null
+/dev/zero
+
+are character devices.
+
+This is important because many embedded Linux hardware interfaces are also device files.
+
+Examples:
+
+/dev/ttyUSB0
+/dev/i2c-1
+/dev/spidev0.0
+
+7. stat_cli.c
+
+A small CLI tool that prints:
+
+path
+file type
+size
+UID
+GID
+permission bits
+permission string
+access time
+modify time
+change time
+
+8. stat failure
+
+If the path does not exist:
+
+stat("missing.txt", &file_info)
+
+returns -1.
+
+perror("stat")
+
+prints:
+
+stat: No such file or directory
+
+9. strace
+
+strace can show the system call behind stat():
+
+strace -e newfstatat ./stat_cli sample.txt
+
+Successful result:
+
+newfstatat(...) = 0
+
+Failed result:
+
+newfstatat(...) = -1 ENOENT
+
+Important commands:
+
+echo "hello stat" > sample.txt
+chmod 644 sample.txt
+ls -l sample.txt
+stat sample.txt
+
+gcc -Wall -Wextra -g stat_basic.c -o stat_basic
+./stat_basic
+
+gcc -Wall -Wextra -g stat_permission.c -o stat_permission
+./stat_permission
+
+chmod 600 sample.txt
+./stat_permission
+
+chmod 755 sample.txt
+./stat_permission
+
+gcc -Wall -Wextra -g stat_type.c -o stat_type
+./stat_type sample.txt
+./stat_type .
+./stat_type /dev/null
+./stat_type /dev/zero
+
+gcc -Wall -Wextra -g stat_cli.c -o stat_cli
+./stat_cli sample.txt
+./stat_cli .
+./stat_cli /dev/null
+./stat_cli missing.txt
+
+strace -e newfstatat ./stat_cli sample.txt
+
+Key lesson:
+stat() allows C programs to inspect Linux file metadata. Embedded Linux programs often need to check whether a path exists, whether it is a device file, and what permissions it has before opening or using it.

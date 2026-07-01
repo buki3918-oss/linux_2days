@@ -1,0 +1,162 @@
+Linux Round 78: Linux Permission, chmod, chown, and sudo
+
+Purpose:
+Learn Linux file permissions more deeply for embedded Linux and device-file access.
+
+Important concepts:
+
+1. Permission format
+
+Example:
+
+-rw-r--r--
+
+Meaning:
+
+- file type
+rw- owner permission
+r-- group permission
+r-- others permission
+
+2. Permission types
+
+r = read
+w = write
+x = execute
+
+3. Permission targets
+
+u = user / owner
+g = group
+o = others
+a = all
+
+4. chmod symbolic mode
+
+Examples:
+
+chmod a-r file
+chmod a+r file
+chmod a-w file
+chmod u+w file
+chmod +x script.sh
+chmod u=rwx,g=rx,o=r script.sh
+
+5. chmod numeric mode
+
+r = 4
+w = 2
+x = 1
+
+Common modes:
+
+644 = rw-r--r--
+755 = rwxr-xr-x
+600 = rw-------
+700 = rwx------
+
+6. Read permission
+
+Without read permission, cat file may show:
+
+Permission denied
+
+7. Write permission
+
+Without write permission, echo text >> file may show:
+
+Permission denied
+
+8. Execute permission
+
+Without execute permission, ./script.sh may show:
+
+Permission denied
+
+9. owner / group / others
+
+owner is usually the user who created the file.
+group is the file group.
+others means users who are neither owner nor in the file group.
+
+Useful commands:
+
+id
+whoami
+groups
+ls -l file
+
+10. chown
+
+chown changes file owner and group.
+
+Example:
+
+sudo chown user:group file
+
+Be careful with chown because changing ownership incorrectly may make files harder to modify.
+
+11. sudo
+
+sudo runs a command with elevated privilege.
+
+Example:
+
+whoami
+sudo whoami
+
+Expected:
+
+normal user
+root
+
+12. Why this matters for embedded Linux
+
+Device files often have permissions.
+
+Examples:
+
+/dev/ttyUSB0
+/dev/i2c-1
+/dev/spidev0.0
+
+A device file may belong to:
+
+root:dialout
+root:i2c
+root:spi
+
+If your user is not in the required group, you may get:
+
+Permission denied
+
+Important commands:
+
+echo "hello permission" > permission.txt
+ls -l permission.txt
+stat permission.txt
+
+chmod a-r permission.txt
+cat permission.txt
+chmod a+r permission.txt
+
+chmod a-w permission.txt
+echo "new line" >> permission.txt
+chmod u+w permission.txt
+
+chmod +x hello_exec.sh
+./hello_exec.sh
+
+chmod 644 permission.txt
+chmod 600 permission.txt
+chmod 755 hello_exec.sh
+
+id
+whoami
+groups
+
+whoami
+sudo whoami
+
+Key lesson:
+Linux permissions control who can read, write, and execute files. Embedded Linux engineers must understand permissions because hardware device files are often protected by owner/group permission settings.
