@@ -1,0 +1,139 @@
+Linux Round 81: exec and wait Basics
+
+Purpose:
+Learn how Linux programs use fork, exec, and wait to run another program from a child process.
+
+Important concepts:
+
+1. exec
+
+exec replaces the current process image with another program.
+
+Example:
+
+execl("/bin/ls", "ls", "-l", NULL);
+
+If exec succeeds, the original program does not continue.
+
+If exec fails, it returns -1 and the next line runs.
+
+2. execl
+
+Function style:
+
+execl(path, arg0, arg1, ..., NULL)
+
+Example:
+
+execl("/bin/ls", "ls", "-l", NULL);
+
+path: actual executable path
+arg0: program name seen by the new process
+arg1: first argument
+NULL: marks the end of arguments
+
+3. exec success
+
+If execl succeeds:
+
+printf after execl will not run.
+
+4. exec failure
+
+If execl fails:
+
+perror("execl");
+
+can show the reason.
+
+Example:
+
+No such file or directory
+
+5. fork + exec
+
+Common pattern:
+
+pid_t pid = fork();
+
+if (pid == 0) {
+    execl(...);
+    perror("execl");
+    return 2;
+} else {
+    // parent
+}
+
+6. wait
+
+wait(&status)
+
+The parent process waits until a child process exits.
+
+Include:
+
+#include <sys/wait.h>
+
+7. wait return value
+
+wait(&status) returns the PID of the finished child process.
+
+8. child exit status
+
+Use:
+
+WIFEXITED(status)
+
+to check whether the child exited normally.
+
+Use:
+
+WEXITSTATUS(status)
+
+to get the child's exit code.
+
+9. fork + exec + wait pattern
+
+This is the classic Unix/Linux process model:
+
+parent forks child
+child execs another program
+parent waits for child
+parent reads child exit code
+
+10. strace
+
+Use:
+
+strace -f -e clone,execve,wait4 ./fork_exec_wait
+
+-f follows child processes.
+
+Important commands:
+
+gcc -Wall -Wextra -g exec_basic.c -o exec_basic
+./exec_basic
+
+gcc -Wall -Wextra -g exec_fail.c -o exec_fail
+./exec_fail
+echo $?
+
+gcc -Wall -Wextra -g fork_exec.c -o fork_exec
+./fork_exec
+
+gcc -Wall -Wextra -g wait_basic.c -o wait_basic
+./wait_basic
+
+gcc -Wall -Wextra -g wait_status.c -o wait_status
+./wait_status
+
+gcc -Wall -Wextra -g fork_exec_wait.c -o fork_exec_wait
+./fork_exec_wait
+
+gcc -Wall -Wextra -g fork_exec_fail_wait.c -o fork_exec_fail_wait
+./fork_exec_fail_wait
+
+strace -f -e clone,execve,wait4 ./fork_exec_wait
+
+Key lesson:
+A Linux shell runs commands using fork, exec, and wait. This pattern is also important for embedded Linux programs that launch tools, monitor child processes, or control external system commands.

@@ -1,0 +1,128 @@
+Linux Round 80: Process fork Basics
+
+Purpose:
+Learn how Linux creates a child process using fork().
+
+Important concepts:
+
+1. Process
+
+A process is a running program.
+
+2. PID and PPID
+
+PID = process ID
+PPID = parent process ID
+
+Useful functions:
+
+getpid()
+getppid()
+
+3. fork()
+
+fork() creates a new child process.
+
+After fork(), both parent and child continue executing from the next instruction.
+
+4. fork return value
+
+In parent process:
+
+fork() returns the child PID.
+
+In child process:
+
+fork() returns 0.
+
+On failure:
+
+fork() returns -1.
+
+5. Parent and child branch
+
+Common pattern:
+
+pid_t pid = fork();
+
+if (pid == -1) {
+    perror("fork");
+    return 1;
+}
+
+if (pid == 0) {
+    // child process
+} else {
+    // parent process
+}
+
+6. Execution order
+
+After fork(), parent and child execution order is not guaranteed.
+
+The Linux scheduler decides which process runs first.
+
+7. Orphan process
+
+If the parent exits before the child, the child may become an orphan process.
+
+It will be adopted by init/systemd or another parent process.
+
+8. Memory after fork
+
+Parent and child have separate memory spaces.
+
+If a variable is changed in the child, it does not change the parent's variable.
+
+If a variable is changed in the parent, it does not change the child's variable.
+
+9. Multiple forks
+
+One fork creates 2 processes.
+
+Two forks create 4 processes.
+
+Three forks create 8 processes.
+
+In general:
+
+n forks create 2^n processes.
+
+Be careful not to create a fork bomb.
+
+10. strace
+
+fork() may appear as clone() in strace.
+
+Command:
+
+strace -e clone,fork,vfork ./fork_branch
+
+Important commands:
+
+gcc -Wall -Wextra -g fork_basic.c -o fork_basic
+./fork_basic
+
+gcc -Wall -Wextra -g fork_pid.c -o fork_pid
+./fork_pid
+
+gcc -Wall -Wextra -g fork_branch.c -o fork_branch
+./fork_branch
+
+gcc -Wall -Wextra -g fork_sleep.c -o fork_sleep
+./fork_sleep
+
+./fork_sleep &
+sleep 1
+ps -f | grep fork_sleep
+
+gcc -Wall -Wextra -g fork_counter.c -o fork_counter
+./fork_counter
+
+gcc -Wall -Wextra -g fork_loop.c -o fork_loop
+./fork_loop
+
+strace -e clone,fork,vfork ./fork_branch
+
+Key lesson:
+fork() creates a child process. Parent and child continue from the same code, but fork() returns different values, allowing the program to separate parent and child behavior.
